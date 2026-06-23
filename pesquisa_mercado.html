@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estudo de Mercado — Condomínio Dom Manuel</title>
+<style>
+  :root{
+    --black:#100e0a; --bg:#16140f; --panel:#1f1c16; --panel-2:#26221b;
+    --line:#3a342a; --line-soft:#2a261d;
+    --gold:#c2a15a; --gold-light:#d9c08a; --gold-dark:#9c7b2e;
+    --txt:#ece6da; --muted:#9a9285; --faint:#6f6c66;
+    --direta:#E06B5A; --indireta:#5B8FB0; --produto:#6BAE8E; --paisagem:#8a8780;
+    --ok:#5Fae7e; --warn:#d98a3d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg);color:var(--txt);
+    font-family:'Segoe UI',Calibri,'Helvetica Neue',Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.55;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 26px;}
+  h1,h2,h3{font-weight:600;letter-spacing:.2px;}
+  a{color:var(--gold);}
+
+  .hero{background:linear-gradient(160deg,#000 0%,#16140f 100%);
+    border-bottom:2px solid var(--gold);padding:34px 0 30px;}
+  .hero .wrap{display:flex;flex-direction:column;gap:4px;}
+  .brand{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;}
+  .brand .mark{font-size:26px;font-weight:700;letter-spacing:6px;color:var(--gold);}
+  .brand .sub{font-size:10px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;}
+  .hero h1{font-size:30px;color:#fff;line-height:1.2;}
+  .hero .tag{font-size:14px;color:var(--gold-light);margin-top:6px;}
+  .hero .meta{font-size:11.5px;color:var(--faint);margin-top:10px;letter-spacing:.3px;}
+  .hero-rel{position:relative;}
+
+  section{padding:34px 0;border-bottom:1px solid var(--line-soft);}
+  .eyebrow{font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--gold);margin-bottom:7px;}
+  section h2{font-size:21px;color:#fff;margin-bottom:4px;}
+  .lead{font-size:13.5px;color:var(--muted);max-width:880px;margin-bottom:20px;}
+
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:7px;
+    padding:14px 15px;border-top:2px solid var(--gold);}
+  .kpi .v{font-size:18px;font-weight:700;color:#fff;line-height:1.2;}
+  .kpi .v small{font-size:11px;color:var(--gold-light);font-weight:600;}
+  .kpi .v2{font-size:11px;color:var(--gold-light);margin-top:4px;font-weight:600;}
+  .kpi .l{font-size:10.5px;color:var(--muted);margin-top:5px;letter-spacing:.3px;}
+  .kpi .x{font-size:10px;color:var(--faint);margin-top:5px;letter-spacing:.2px;}
+  .types{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+  .type{background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:13px 16px;
+    display:flex;justify-content:space-between;align-items:center;}
+  .type .n{font-size:13px;color:var(--gold);font-weight:600;}
+  .type .d{font-size:12px;color:var(--muted);}
+  .type .u{font-size:18px;font-weight:700;color:#fff;}
+
+  .verdict{background:linear-gradient(135deg,#1f1c16,#1f1c16);
+    border:1px solid var(--gold-dark);border-left:3px solid var(--gold);
+    border-radius:7px;padding:20px 22px;}
+  .verdict .big{font-size:15px;color:#fff;font-weight:600;margin-bottom:12px;}
+  .verdict .big b{color:var(--gold);}
+  .vlist{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .vlist li{font-size:13px;color:var(--txt);padding-left:20px;position:relative;}
+  .vlist li::before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;
+    background:var(--gold);border-radius:2px;transform:rotate(45deg);}
+
+  .chartcard{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin-bottom:14px;}
+  .chartcard .ct{font-size:13px;color:#fff;font-weight:600;margin-bottom:2px;}
+  .chartcard .cs{font-size:11.5px;color:var(--muted);margin-bottom:14px;}
+  svg{display:block;width:100%;height:auto;overflow:visible;}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:11px;color:var(--muted);}
+  .legend span{display:flex;align-items:center;gap:6px;}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  .swatch{width:13px;height:9px;border-radius:2px;display:inline-block;}
+
+  table{width:100%;border-collapse:collapse;font-size:12px;}
+  th,td{padding:7px 9px;text-align:right;border-bottom:1px solid var(--line-soft);vertical-align:top;}
+  th:first-child,td:first-child{text-align:left;}
+  thead th{background:#26221b;color:#fff;font-size:10.5px;text-transform:uppercase;
+    letter-spacing:.6px;border-bottom:2px solid var(--gold);}
+  tbody tr:nth-child(even){background:var(--panel-2);}
+  caption{caption-side:top;text-align:left;font-size:11px;color:var(--faint);padding-bottom:6px;}
+  tr.bgrp td{background:#1f1c16 !important;color:var(--gold);font-weight:600;font-size:10.5px;
+    letter-spacing:1.5px;text-transform:uppercase;padding:9px;border-bottom:1px solid var(--gold-dark);text-align:left;}
+
+  /* Tabela cruzada (legado removido) */
+  table.cross{font-size:11.5px;}
+  table.cross th,table.cross td{text-align:left;padding:6px 9px;border-bottom:1px solid var(--line-soft);}
+  table.cross thead th{font-size:10.5px;text-align:left;}
+  table.cross th.dm,table.cross td.dm{background:rgba(194,161,90,0.10);
+    border-left:2px solid var(--gold);border-right:1px solid var(--gold-dark);}
+  table.cross thead th.dm{color:var(--gold);border-bottom:2px solid var(--gold);}
+  table.cross tbody tr td:first-child{color:var(--muted);font-weight:500;font-size:10.5px;letter-spacing:.3px;text-transform:uppercase;}
+  table.cross .t01{display:block;color:var(--gold-light);font-weight:600;font-size:11px;}
+  table.cross .t02{display:block;color:var(--gold-light);font-weight:600;font-size:11px;margin-top:3px;}
+  table.cross .pend{color:var(--warn);font-style:italic;font-size:10.5px;}
+  .cs-note{font-size:11px;color:var(--faint);margin-top:8px;}
+
+  .bairro-h{font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);
+    margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--gold-dark);}
+  .bairro-h:first-child{margin-top:6px;}
+  .bairro-h .cnt{color:var(--muted);font-size:10px;margin-left:8px;letter-spacing:.5px;text-transform:none;}
+
+  .synth{font-size:12.5px;color:var(--txt);background:var(--panel);
+    border:1px solid var(--line);border-left:3px solid var(--gold);
+    border-radius:5px;padding:13px 16px;margin-top:14px;}
+  .synth b{color:var(--gold-light);}
+  .note{font-size:12px;color:var(--muted);background:var(--panel);
+    border:1px solid var(--line);border-left:3px solid var(--gold);
+    border-radius:5px;padding:12px 15px;margin-top:14px;}
+  .note b{color:var(--gold-light);}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .twotables{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .gaps li{font-size:12.5px;color:var(--txt);margin-bottom:9px;list-style:none;
+    padding-left:20px;position:relative;}
+  .gaps li::before{content:"›";position:absolute;left:4px;color:var(--gold);font-weight:700;}
+  .gaps li b{color:#fff;}
+  .tags{display:flex;gap:7px;margin-top:7px;flex-wrap:wrap;}
+  .badge{font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;
+    border-radius:3px;background:var(--panel-2);color:var(--muted);border:1px solid var(--line);}
+  .badge.crit{color:var(--direta);border-color:var(--direta);}
+  .badge.ok{color:var(--ok);border-color:var(--ok);}
+
+  .tier-tbl{width:100%;border-collapse:collapse;font-size:13px;color:var(--txt);}
+  .tier-tbl thead th{font-size:10.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);
+    font-weight:600;text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);}
+  .tier-tbl tbody td{padding:13px 12px;vertical-align:top;border-bottom:1px solid var(--line-soft);line-height:1.5;}
+  .tier-tbl tbody tr:last-child td{border-bottom:none;}
+  .tier-tbl tfoot td{padding:11px 12px;font-size:12px;color:var(--gold);border-top:1px solid var(--line);}
+  .tier-tbl td .muted{font-size:11px;color:var(--muted);}
+  .tier-pill{display:inline-block;padding:4px 10px;border-radius:14px;font-size:11px;font-weight:700;
+    letter-spacing:.4px;margin-bottom:4px;}
+  .placeholder{padding:24px;border:1px dashed var(--line);border-radius:6px;background:var(--panel);
+    color:var(--muted);font-size:13px;text-align:center;line-height:1.6;}
+  .placeholder b{color:var(--gold);}
+
+  footer{padding:24px 0 40px;font-size:11px;color:var(--faint);}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+  @media (max-width:1000px){
+    .kpis{grid-template-columns:repeat(2,1fr);}
+    .two,.types,.twotables{grid-template-columns:1fr;}
+  }
+  @media print{
+    :root{--bg:#16140f;}
+    body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .printbtn{display:none;}
+    section{break-inside:avoid;}
+    .chartcard,.verdict,.kpi,.synth{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero hero-rel">
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark">DOM</span>
+      <span class="sub">Incorporação · Inteligência de Mercado</span>
+    </div>
+    <h1>Condomínio Dom Manuel — Inteligência Comercial</h1>
+    <div class="tag">Inteligência de mercado · R$/m² e concorrência · Vertical · Ponta D'Areia, São Luís/MA</div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">01 · R$/m² por bairro</div>
+    <h2>Dom Manuel × média de R$/m² por bairro</h2>
+    <div class="chartcard" style="margin-bottom:16px;">
+      <div class="ct">R$/m² médio por degrau × Ponta d'Areia</div>
+      <div class="cs">Escada do DM × média de Ponta d'Areia (R$ 15.642/m² · 3 empreend., todos os do bairro) — o DM fica −14% no T1 e −9% no T4.</div>
+      <svg id="svgEscada" viewBox="0 0 1040 360"></svg>
+    </div>
+    <div class="chartcard" style="margin-top:16px;">
+      <div class="ct">R$/m² médio por degrau × Península</div>
+      <div class="cs">Dom Manuel × média de Península, todos os empreendimentos exceto Monte Meru (R$ 17.881/m² · 4 empreend.) — DM −25% no T1 a −21% no T4.</div>
+      <svg id="svgEscadaPen" viewBox="0 0 1040 360"></svg>
+    </div>
+    <div class="chartcard" style="margin-top:16px;">
+      <div class="ct">R$/m² médio por degrau × Ponta do Farol</div>
+      <div class="cs">Escada do DM × média de todos os empreendimentos de Ponta do Farol (R$ 17.462/m² · 2 empreend.) — o DM fica bem abaixo: −23% no T1 a −19% no T4.</div>
+      <svg id="svgEscadaPF" viewBox="0 0 1040 360"></svg>
+    </div>
+    <div class="chartcard" style="margin-top:16px;">
+      <div class="ct">R$/m² médio por degrau × Calhau</div>
+      <div class="cs">Escada do DM × média de todos os empreendimentos de Calhau (R$ 15.747/m² · 5 empreend.) — o DM fica −15% no T1 a −10% no T4.</div>
+      <svg id="svgEscadaCal" viewBox="0 0 1040 360"></svg>
+    </div>
+    <div class="chartcard" style="margin-top:16px;">
+      <div class="ct">R$/m² médio por degrau × Renascença / Renascença II</div>
+      <div class="cs">Escada do DM × média de todos os empreendimentos de Renascença / Renascença II (R$ 14.879/m² · 4 empreend.) — o DM fica −10% no T1 a −5% no T4.</div>
+      <svg id="svgEscadaRen" viewBox="0 0 1040 360"></svg>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">02 · Metodologia · concorrentes por porte de planta</div>
+    <h2>Filtro por área privativa</h2>
+    <p class="lead">Filtro do funil competitivo: <b>área privativa</b>. Cada linha = um empreendimento com sua faixa total de área (do menor ao maior valor consolidado). A <b>banda dourada</b> é a faixa competitiva — corte <b>simétrico</b> de ±25%: -25% abaixo do Tipo 02 (116,38 × 0,75 = <b>87,3 m²</b>) e +25% acima do Tipo 01 (134,68 × 1,25 = <b>168,4 m²</b>). A banda cobre produtos com porte de planta equivalente ao do Dom Manuel — fora dela, o produto é compacto ou amplo demais para disputar o mesmo cliente. Dentro da banda, duas linhas tracejadas marcam exatamente as áreas dos tipos do Dom Manuel. <b>14 empreendimentos passam</b>.</p>
+    <div class="chartcard">
+      <div class="ct">Visão panorâmica — todos os empreendimentos × faixa competitiva por área</div>
+      <div class="cs">Áreas em metros quadrados. Concorrentes coloridos por tier; ordem ascendente pela menor área. Empreendimentos cuja faixa toca ou cruza a banda dourada disputam o Dom Manuel por porte de planta.</div>
+      <svg id="svgAreaAll" viewBox="0 0 1040 920"></svg>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--gold)"></i> Faixa competitiva (±25% do Dom Manuel) — 87,3 a 168,4 m²</span>
+        <span style="color:var(--gold);font-weight:700;">┊┊</span><span>Linhas tracejadas: T01 (134,68 m²) e T02 (116,38 m²)</span>
+        <span><i class="dot" style="background:var(--direta)"></i> T1 — equivalência por microrregião (Ponta d'Areia)</span>
+        <span><i class="dot" style="background:var(--indireta)"></i> T2 — localização concorrente (Renascença · Calhau · P. Farol · Península)</span>
+        <span><i class="dot" style="background:var(--paisagem)"></i> T3 — eliminação por localização sem equivalência</span>
+      </div>
+    </div>
+
+    <div class="chartcard" style="margin-top:18px;">
+      <div class="ct">Capturados pela peneira de área — ordenados por mediana de área (asc.)</div>
+      <div class="cs">Apenas os 14 empreendimentos cuja faixa toca a banda dourada, ordenados pela <b>mediana da própria faixa de área</b> — do produto mais compacto (topo) ao mais amplo (base). Leitura natural pequeno → grande; o Dom Manuel (mediana 125,5 m²) cai entre ORO e Entre Rios. Tier indicado no rótulo (T1 Ponta d'Areia · T2 demais localizações).</div>
+      <svg id="svgAreaCapt" viewBox="0 0 1040 620"></svg>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--gold)"></i> Faixa competitiva — 87,3 a 168,4 m²</span>
+        <span><i class="dot" style="background:var(--direta)"></i> T1</span>
+        <span><i class="dot" style="background:var(--indireta)"></i> T2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">03 · R$/m² concorrente a concorrente</div>
+    <h2>R$/m² panorâmico — Dom Manuel × concorrentes</h2>
+    <p class="lead">Desdobramento granular: o R$/m² médio publicado de cada um dos <b>12 concorrentes com tabela</b> (os que passaram nas duas peneiras), contra a faixa de R$/m² do Dom Manuel — média do prédio de cada tabela, do T1 (R$ 13.400) ao T4 (R$ 14.204). Ordem: <b>R$/m² médio asc.</b> Cor = tier de localização.</p>
+    <div class="chartcard">
+      <div class="ct">R$/m² panorâmico — 12 empreendimentos com tabela × envelope DM</div>
+      <div class="cs">Eixo: R$/m². Leitura imediata: apenas <b>Renaissance Conceito</b> (R$ 13.168) fica abaixo do piso do DM (R$ 13.400); os <b>outros 11 sobreviventes com tabela cobram R$/m² acima do topo da escada do DM</b> (R$ 14.204/m²). O Dom Manuel se posiciona no <b>terço inferior</b> do mercado equivalente em área e localização — posicionamento de <b>preço competitivo</b> contra o entorno direto.</div>
+      <svg id="svgRm2Surv" viewBox="0 0 1040 580"></svg>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--gold)"></i> Envelope DM · média por tabela · T1 (R$ 13.400) → T4 (R$ 14.204)</span>
+        <span><i class="dot" style="background:var(--direta)"></i> T1</span>
+        <span><i class="dot" style="background:var(--indireta)"></i> T2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>DOM Incorporação · Inteligência de Mercado · Dom Manuel</span>
+    <span>Lado concorrência: Planilha Mestre Panorama v11.24 · Lado Dom Manuel: tabelas comerciais reais (Régua v3.3 · 22/06/2026)</span>
+  </div>
+</footer>
+
+<script>
+const fmt = n => n==null?'n/d':n.toLocaleString('pt-BR');
+const fmtM = v => v==null?'n/d':'R$ '+v.toFixed(2).replace('.',',')+' M';
+const ROT = {direta:'#E06B5A', indireta:'#5B8FB0', produto:'#6BAE8E', paisagem:'#8a8780'};
+const SVGNS='http://www.w3.org/2000/svg';
+function el(tag,attrs,txt){
+  const e=document.createElementNS(SVGNS,tag);
+  for(const k in attrs) e.setAttribute(k,attrs[k]);
+  if(txt!=null) e.textContent=txt;
+  return e;
+}
+
+const ESCADA=[13400,13668,13936,14204];          // média ponderada por área (VGV÷m²) — Régua v3.3
+const ESCADA_T01=[13582,13854,14126,14397];      // Tipo 01 (mar+lagoa) — média do prédio (tabelas reais)
+const ESCADA_T02=[12978,13238,13497,13757];      // Tipo 02 — média do prédio (tabelas reais)
+const ESC_TKT01=[1829224,1865857,1902490,1938988]; // Tipo 01 × 134,68
+const ESC_TKT02=[1510380,1540638,1570781,1601040]; // Tipo 02 × 116,38
+const REF_T1=15790, REF_T2=15614;  // médias por tier (T2 = fusão Renascença+Calhau+P.Farol+Península, 12 empreend.; ponderado)
+
+/* ===== POSIÇÃO GLOBAL — duas tabelas ===== */
+function pct(v,ref){
+  const p=((v/ref)-1)*100;
+  if(Math.abs(p)<0.6) return {t:'par',c:'#5Fae7e'};
+  const s=(p<0?'−':'+')+Math.abs(Math.round(p))+'%';
+  return {t:s,c:p<0?'#5Fae7e':'#d98a3d'};
+}
+function fillPos(){
+  const labels=['T1','T2','T3','T4'];
+  [['tbPosT01',ESCADA_T01,ESC_TKT01],['tbPosT02',ESCADA_T02,ESC_TKT02]].forEach(([id,rsmArr,tkArr])=>{
+    const tb=document.getElementById(id);
+    rsmArr.forEach((rsm,i)=>{
+      const p1=pct(rsm,REF_T1), p2=pct(rsm,REF_T2);
+      const tr=document.createElement('tr');
+      tr.innerHTML=`<td><b style="color:#d9c08a">${labels[i]}</b></td>
+        <td>R$ ${fmt(rsm)}</td>
+        <td>R$ ${fmt(tkArr[i])}</td>
+        <td style="color:${p1.c}">${p1.t}</td>
+        <td style="color:${p2.c}">${p2.t}</td>`;
+      tb.appendChild(tr);
+    });
+  });
+}
+
+/* ===== RÉGUA ===== */
+function drawRegua(svgId, data, opts){
+  const svg=document.getElementById(svgId);
+  const W=1040, L=opts.L||225, Rp=opts.Rp||95, top=opts.top||34;
+  const axisY=opts.h-30;
+  const x0=opts.x0||12000, x1=opts.x1||17000;
+  const X=v=>L+(v-x0)/(x1-x0)*(W-L-Rp);
+  const rows=[...data].sort((a,b)=>a.v-b.v);
+  const rowH=(axisY-top)/rows.length;
+  // Zona de giro lento — opt false desliga; opt {from,label} customiza
+  if(opts.dz!==false){
+    const dzFrom = (opts.dz && opts.dz.from) || 15000;
+    const dzLabel = (opts.dz && opts.dz.label) || 'Zona de giro lento (~R$ 15–16 mil)';
+    svg.appendChild(el('rect',{x:X(dzFrom),y:top,width:X(x1)-X(dzFrom),height:axisY-top,
+      fill:'rgba(224,107,90,0.10)'}));
+    svg.appendChild(el('text',{x:X(dzFrom)+8,y:top+13,fill:'#E06B5A','font-size':10.5,'font-weight':600},dzLabel));
+  }
+  // grid X ticks
+  const stepX=opts.stepX||1000;
+  for(let v=x0;v<=x1;v+=stepX){
+    svg.appendChild(el('line',{x1:X(v),y1:top,x2:X(v),y2:axisY,stroke:'#2a2a2a'}));
+    svg.appendChild(el('text',{x:X(v),y:axisY+21,fill:'#9a978f','font-size':10.5,'text-anchor':'middle'},
+      'R$ '+fmt(v)));
+  }
+  // Dom Manuel band — default = v1 (13400-14204 com ESCADA, centered label); custom via opts.dmBand
+  const band = opts.dmBand || {lo:13400, hi:14204, ticks:ESCADA, centerLabel:'DOM MANUEL · T1→T4'};
+  svg.appendChild(el('rect',{x:X(band.lo),y:top,width:X(band.hi)-X(band.lo),height:axisY-top,
+    fill:'rgba(194,161,90,0.17)',stroke:'#c2a15a','stroke-width':1}));
+  // border labels — opt-in, posicionados FORA dos bordos (não conflita com ticks internos quando existem)
+  if(band.loLabel){
+    svg.appendChild(el('text',{x:X(band.lo)-6,y:top-12,fill:'#c2a15a',
+      'font-size':10.5,'font-weight':700,'text-anchor':'end'},band.loLabel));
+  }
+  if(band.hiLabel){
+    svg.appendChild(el('text',{x:X(band.hi)+6,y:top-12,fill:'#c2a15a',
+      'font-size':10.5,'font-weight':700,'text-anchor':'start'},band.hiLabel));
+  }
+  // ticks internos — opcionais; suprime labels nas bordas quando há border labels (evita duplicidade com Mín/Máx · T0/T4)
+  if(band.ticks){
+    const skipEdgeLabels = !!(band.loLabel || band.hiLabel);
+    band.ticks.forEach((d,i)=>{
+      svg.appendChild(el('line',{x1:X(d),y1:top,x2:X(d),y2:top+9,stroke:'#c2a15a','stroke-width':1.5}));
+      const atEdge = skipEdgeLabels && (i===0 || i===band.ticks.length-1);
+      if(!atEdge){
+        svg.appendChild(el('text',{x:X(d),y:top-5,fill:'#d9c08a','font-size':9,'text-anchor':'middle'},'T'+(i+1)));
+      }
+    });
+  }
+  // center label (rodapé da banda) — opcional
+  if(band.centerLabel){
+    svg.appendChild(el('text',{x:(X(band.lo)+X(band.hi))/2,y:axisY-9,fill:'#c2a15a',
+      'font-size':10,'font-weight':700,'text-anchor':'middle'},band.centerLabel));
+  }
+  rows.forEach((c,i)=>{
+    const y=top+i*rowH+rowH/2;
+    svg.appendChild(el('text',{x:L-14,y:y+4,fill:'#ece6da','font-size':10.5,'text-anchor':'end','font-weight':600},c.n));
+    svg.appendChild(el('line',{x1:L,y1:y,x2:X(c.v),y2:y,stroke:ROT[c.r],'stroke-width':1.5,opacity:.4}));
+    svg.appendChild(el('circle',{cx:X(c.v),cy:y,r:5.5,fill:ROT[c.r],stroke:'#1f1c16','stroke-width':1.5}));
+    svg.appendChild(el('text',{x:X(c.v)+12,y:y+4,fill:ROT[c.r],'font-size':10.5,'font-weight':600},'R$ '+fmt(c.v)));
+  });
+  svg.appendChild(el('line',{x1:L,y1:axisY,x2:X(x1),y2:axisY,stroke:'#555'}));
+}
+
+/* ===== ESCADA ===== */
+function ensureGradient(svg){
+  if(svg.querySelector('#gg')) return;
+  const defs=el('defs',{});
+  const lg=el('linearGradient',{id:'gg',x1:0,y1:0,x2:0,y2:1});
+  lg.appendChild(el('stop',{offset:'0%','stop-color':'#c2a15a'}));
+  lg.appendChild(el('stop',{offset:'100%','stop-color':'#8B6914'}));
+  defs.appendChild(lg); svg.appendChild(defs);
+}
+function drawEscadaWithRefs(svgId, escadaArr, refs, yRange, showGap){
+  const svg=document.getElementById(svgId);
+  const W=1040,L=60,Rp=40,top=40,baseY=290;
+  const [y0,y1] = yRange || [12800,16200];
+  const Y=v=>baseY-(v-y0)/(y1-y0)*(baseY-top);
+  // anti-overlap labels: ordena por Y e empurra para baixo se sobreposição
+  const sorted = refs.map(r=>({lab:r[0],v:r[1],c:r[2],y:Y(r[1])})).sort((a,b)=>a.y-b.y);
+  const minGap=14;
+  for(let i=1;i<sorted.length;i++){
+    if(sorted[i].y - sorted[i-1].y < minGap){
+      sorted[i].y = sorted[i-1].y + minGap;
+    }
+  }
+  sorted.forEach(r=>{
+    const realY=Y(r.v);
+    svg.appendChild(el('line',{x1:L,y1:realY,x2:W-Rp,y2:realY,stroke:r.c,'stroke-width':1,'stroke-dasharray':'5 4',opacity:.85}));
+    if(Math.abs(r.y-realY)>2){
+      svg.appendChild(el('line',{x1:L+3,y1:realY,x2:L+3,y2:r.y-6,stroke:r.c,'stroke-width':1,opacity:.5}));
+    }
+    svg.appendChild(el('text',{x:L+4,y:r.y-4,fill:r.c,'font-size':10.5,'text-anchor':'start'},r.lab));
+  });
+  const n=escadaArr.length, slotW=(W-L-Rp)/n;
+  escadaArr.forEach((rsm,i)=>{
+    const cx=L+slotW*i+slotW/2, bw=slotW*0.52;
+    const h=baseY-Y(rsm);
+    svg.appendChild(el('rect',{x:cx-bw/2,y:Y(rsm),width:bw,height:h,
+      fill:'url(#gg)',stroke:'#c2a15a','stroke-width':1,rx:3}));
+    svg.appendChild(el('text',{x:cx,y:Y(rsm)-22,fill:'#fff','font-size':13,'font-weight':700,'text-anchor':'middle'},'R$ '+fmt(rsm)));
+    if(showGap && refs[0]){
+      const p=pct(rsm,refs[0][1]);
+      svg.appendChild(el('text',{x:cx,y:Y(rsm)-8,fill:p.c,'font-size':10.5,'text-anchor':'middle','font-weight':600},p.t+' vs '+(typeof showGap==='string'?showGap:'Tier 1')));
+    }
+    svg.appendChild(el('text',{x:cx,y:baseY+18,fill:'#d9c08a','font-size':12,'font-weight':700,'text-anchor':'middle'},'T'+(i+1)));
+  });
+  svg.appendChild(el('line',{x1:L,y1:baseY,x2:W-Rp,y2:baseY,stroke:'#555'}));
+  ensureGradient(svg);
+}
+function drawEscada(){
+  [["svgEscada",    "Ponta d'Areia — média R$ 15.642 (3 emp.)",            15642, "P. d'Areia"],
+   ["svgEscadaRen", "Renascença / Renasc. II — média R$ 14.879 (4 emp.)",  14879, "Renascença"],
+   ["svgEscadaCal", "Calhau — média R$ 15.747 (5 emp.)",                   15747, "Calhau"],
+   ["svgEscadaPF",  "Ponta do Farol — média R$ 17.462 (2 emp.)",           17462, "P. do Farol"],
+   ["svgEscadaPen", "Península — média R$ 17.881 (4 emp.)",                17881, "Península"]
+  ].forEach(function(x){ drawEscadaWithRefs(x[0], ESCADA, [[x[1],x[2],ROT.direta]], [10000,18000], x[3]); });
+}
+
+/* ===== CURVA DE ANDAR ===== */
+function drawCurva(){
+  const svg=document.getElementById('svgCurva');
+  const data=[
+    {n:'ORO',v:3.41,r:'direta'},
+    {n:'Vernazza',v:1.44,r:'direta'},
+    {n:'Zion',v:1.30,r:'direta'},
+    {n:'Giardino Residenza',v:1.12,r:'indireta'},
+    {n:'Renaissance Conceito',v:1.02,r:'indireta'},
+    {n:'Landscape',v:0.86,r:'indireta'},
+    {n:'Dom Manuel',v:0.50,r:'dm'}
+  ];
+  const W=1040,L=190,Rp=60,top=20,baseY=290;
+  const x1=3.8, X=v=>L+v/x1*(W-L-Rp);
+  const rowH=(baseY-top)/data.length;
+  for(let g=0;g<=3.5;g+=0.5){
+    svg.appendChild(el('line',{x1:X(g),y1:top,x2:X(g),y2:baseY,stroke:'#2a2a2a'}));
+    svg.appendChild(el('text',{x:X(g),y:baseY+18,fill:'#6f6c66','font-size':10,'text-anchor':'middle'},'+'+g.toFixed(1)+'%'));
+  }
+  data.forEach((d,i)=>{
+    const y=top+i*rowH+rowH*0.18, h=rowH*0.62;
+    const col = d.r==='dm'?'#c2a15a':ROT[d.r];
+    svg.appendChild(el('rect',{x:L,y:y,width:X(d.v)-L,height:h,fill:col,rx:3,
+      opacity:d.r==='dm'?1:0.85}));
+    svg.appendChild(el('text',{x:L-12,y:y+h/2+4,fill:d.r==='dm'?'#c2a15a':'#ece6da',
+      'font-size':11.5,'text-anchor':'end','font-weight':d.r==='dm'?700:500},d.n));
+    svg.appendChild(el('text',{x:X(d.v)+8,y:y+h/2+4,fill:'#fff','font-size':11.5,'font-weight':700},
+      '+'+d.v.toFixed(2).replace('.',',')+'%/andar'));
+  });
+  svg.appendChild(el('line',{x1:L,y1:top,x2:L,y2:baseY,stroke:'#555'}));
+}
+
+/* ===== PRATELEIRAS DE TICKET POR TIPO ===== */
+// Visão panorâmica — área privativa por empreendimento (ordenado por menor área asc.)
+const AREA_ALL=[
+  {n:'Nexus Renascença · Renascença (Studio+1D+2D+3D)',lo:30.79,hi:95.84,c:ROT.indireta},
+  {n:'The View · Calhau (Studio/1D/2D/3D)',lo:36.05,hi:85.87,c:ROT.indireta},
+  {n:'Studio Design 7 Península · Península (Studio/2D/3D)',lo:42.4,hi:88.78,c:ROT.indireta},
+  {n:'Le Noir · Renascença II (Studio/1D/2D)',lo:49.74,hi:62.62,c:ROT.paisagem},
+  {n:'Residencial Novo Anil · Cohab Anil IV (2D)',lo:53.94,hi:53.94,c:ROT.paisagem},
+  {n:'Edifício Sanpaolo · Cohama (1D/2D)',lo:54,hi:59,c:ROT.paisagem},
+  {n:'Altos do São Francisco · São Francisco (2D/3D)',lo:57.93,hi:67.15,c:ROT.paisagem},
+  {n:'Cidade de Viena · Turu (2D/3D)',lo:61.38,hi:86.58,c:ROT.paisagem},
+  {n:'Fiji Residence · Cohama (2D/3D)',lo:61.79,hi:80.53,c:ROT.paisagem},
+  {n:'Mount Solaro · Península (Loft+Apt 2D/3D)',lo:68,hi:104,c:ROT.indireta},
+  {n:'Reserva São Marcos · Calhau (2D Lagoa 68 + 3D Litorânea 103 m²)',lo:68.12,hi:103.15,c:ROT.indireta},
+  {n:'ORO Ponta d\'Areia · Ponta d\'Areia (3D + Cob 4D)',lo:80.32,hi:160.65,c:ROT.direta},
+  {n:'Renaissance Conceito · Renascença II (3D · Botticelli 82 + Leonardo 110 m²)',lo:82,hi:110,c:ROT.indireta},
+  {n:'Vernazza · Ponta d\'Areia (3D · Sul 88–90 + Norte 130 m²)',lo:87.98,hi:130.49,c:ROT.direta},
+  {n:'Landscape · Calhau (3D · 88–143 m², 4 plantas)',lo:88.07,hi:143.64,c:ROT.indireta},
+  {n:'LIV Residence · Ponta d\'Areia (3D três plantas)',lo:90.83,hi:100.23,c:ROT.direta},
+  {n:'Giardino Residenza · Ponta do Farol (3D Luce/Fiore-Col03 + 4D Fiore-Col01/02)',lo:93.62,hi:128.37,c:ROT.indireta},
+  {n:'Entre Rios · Renascença II (3D três tipologias)',lo:125,hi:157,c:ROT.indireta},
+  {n:'Reserva Península · Península (4D mono)',lo:127.14,hi:171.36,c:ROT.indireta},
+  {n:'Zion · Ponta d\'Areia (4D mono)',lo:148.55,hi:148.55,c:ROT.direta},
+  {n:'Quartier 22 · Península (3D mono)',lo:165,hi:165,c:ROT.indireta},
+  {n:'Edifício Bossa · Calhau (4D 3 tipologias)',lo:191.02,hi:196.04,c:ROT.paisagem},
+  {n:'Azimuth · Península (3D mono)',lo:196.62,hi:196.62,c:ROT.paisagem},
+  {n:'Al Mare Tirreno · Calhau (4D mono)',lo:215,hi:215,c:ROT.paisagem},
+  {n:'Sky Residence · Península (4D mono)',lo:246.69,hi:246.69,c:ROT.paisagem},
+  {n:'Wave Residence · Ponta do Farol (4D mono)',lo:293.69,hi:293.69,c:ROT.paisagem}
+];
+// A.1 secundário — capturados pela peneira de área, ordenados por mediana de área (asc.)
+// banda 81,47–168,35 m². Mediana = (lo+hi)/2. Tier no label esquerdo.
+const AREA_CAPT=[
+  {n:'Nexus Renascença · Renascença · T2 · mediana 63,3 m²',lo:30.79,hi:95.84,c:ROT.indireta},
+  {n:'Studio Design 7 · Península · T2 · mediana 65,6 m²',lo:42.4,hi:88.78,c:ROT.indireta},
+  {n:'Reserva São Marcos · Calhau · T2 · mediana 85,6 m²',lo:68.12,hi:103.15,c:ROT.indireta},
+  {n:'Mount Solaro · Península · T2 · mediana 86,0 m²',lo:68,hi:104,c:ROT.indireta},
+  {n:'LIV Residence · Ponta d\'Areia · T1 · mediana 95,5 m²',lo:90.83,hi:100.23,c:ROT.direta},
+  {n:'Renaissance Conceito · Renascença II · T2 · mediana 96,0 m²',lo:82,hi:110,c:ROT.indireta},
+  {n:'Vernazza · Ponta d\'Areia · T1 · mediana 109,2 m²',lo:87.98,hi:130.49,c:ROT.direta},
+  {n:'Giardino Residenza · Ponta do Farol · T2 · mediana 111,0 m²',lo:93.62,hi:128.37,c:ROT.indireta},
+  {n:'Landscape · Calhau · T2 · mediana 115,9 m²',lo:88.07,hi:143.64,c:ROT.indireta},
+  {n:'ORO Ponta d\'Areia · Ponta d\'Areia · T1 · mediana 120,5 m²',lo:80.32,hi:160.65,c:ROT.direta},
+  {n:'Entre Rios · Renascença II · T2 · mediana 141,0 m²',lo:125,hi:157,c:ROT.indireta},
+  {n:'Zion · Ponta d\'Areia · T1 · mediana 148,5 m²',lo:148.55,hi:148.55,c:ROT.direta},
+  {n:'Reserva Península · Península · T2 · mediana 149,3 m²',lo:127.14,hi:171.36,c:ROT.indireta},
+  {n:'Quartier 22 · Península · T2 · mediana 165,0 m²',lo:165,hi:165,c:ROT.indireta}
+];
+// B.1 — R$/m² panorâmico dos sobreviventes (14 com tabela; 2 sem: LIV, Reserva Península)
+// Estrutura para drawRegua: {n, r:tier ROT key, v: R$/m² médio}
+// Envelope DM: T1 Tipo 02 = R$ 12.978 → T4 Tipo 01 = R$ 14.397 (média do prédio por tipo, tabelas reais)
+const RM2_SURV=[
+  {n:'Renaissance Conceito · Renascença II · T2',r:'indireta',v:13168},
+  {n:'Landscape · Calhau · T2',r:'indireta',v:14600},
+  {n:'Entre Rios · Renascença II · T2',r:'indireta',v:15200},
+  {n:'Mount Solaro · Península · T2 · estim.',r:'indireta',v:15384},
+  {n:'Giardino Residenza · Ponta do Farol · T2',r:'indireta',v:15500},
+  {n:'Vernazza · Ponta d\'Areia · T1',r:'direta',v:15519},
+  {n:'Zion · Ponta d\'Areia · T1',r:'direta',v:15900},
+  {n:'ORO Ponta d\'Areia · Ponta d\'Areia · T1',r:'direta',v:15952},
+  {n:'Studio Design 7 · Península · T2 · estim.',r:'indireta',v:15981},
+  {n:'Nexus Renascença · Renascença · T2',r:'indireta',v:16107},
+  {n:'Reserva São Marcos · Calhau · T2',r:'indireta',v:16300},
+  {n:'Quartier 22 · Península · T2',r:'indireta',v:18182}
+];
+// B.2 — R$/m² por tipo · Tipo 01 (4D) — concorrentes 4D × banda DM Tipo 01 (R$ 13.582 → 14.397)
+// Estrutura para drawRegua: {n, r:tier ROT key, v: R$/m²}
+const RM2_T01_SURV=[
+  {n:'ORO Cobertura Duplex · Niágara · 4D · 160,65 m² · T1',r:'direta',v:15095},
+  {n:'Zion · Ergus · 4D · 148,55 m² · T1',r:'direta',v:15900}
+];
+// B.2 — R$/m² por tipo · Tipo 02 (3D) — concorrentes 3D × banda DM Tipo 02 (R$ 12.978 → 13.757)
+// Landscape (Delman) é 100% 3D (correção v11.23): núcleo 88–103,6m² ~R$14.640 + cobertura duplex 123–143m² ~R$16.136
+const RM2_T02_SURV=[
+  {n:'Landscape núcleo · Delman · 3D · 88–103,6 m² · T2',r:'indireta',v:14640},
+  {n:'Entre Rios · Mota Machado · 3D · 125–157 m² · T2',r:'indireta',v:15200},
+  {n:'Mount Solaro · Berg · 3D · 104 m² · T2 · estim.',r:'indireta',v:15384},
+  {n:'Vernazza Sul · Treviso · 3D · 88–90 m² · T1',r:'direta',v:15477},
+  {n:'Vernazza Norte · Treviso · 3D · 130 m² · T1 · gêmeo do DM Tipo 01',r:'direta',v:15560},
+  {n:'Giardino Residenza · Alfa Engenharia · 3D+4D · 99–128 m² · T2',r:'indireta',v:15500},
+  {n:'ORO 3D · Niágara · 3D · 80 m² · T1',r:'direta',v:15952},
+  {n:'Nexus · Ergus · 3D · 80–96 m² · T2 · estim.',r:'indireta',v:16107},
+  {n:'Landscape cobertura duplex · Delman · 3D · 123–143 m² · T2',r:'indireta',v:16136},
+  {n:'Reserva São Marcos Litorânea · Mota Machado · 3D · 103 m² · T2',r:'indireta',v:16300}
+];
+// B.4 — Ticket por tipo · Tipo 01 (4D) — concorrentes 4D × banda DM Tipo 01 (R$ 1,80→1,94 M)
+// Ordem: mediana de ticket asc. Tier no label esquerdo.
+const TICKET_T01_SURV=[
+  {n:'Zion · Ergus · 4D · 148,55 m² · T1',lo:2.17,hi:2.56,c:ROT.direta},
+  {n:'ORO Cobertura Duplex · Niágara · 4D · 160,65 m² · T1',lo:2.42,hi:2.42,c:ROT.direta}
+];
+// B.4 — Ticket por tipo · Tipo 02 (3D) — concorrentes 3D × banda DM Tipo 02 (R$ 1,57→1,69 M)
+// Ordem: mediana de ticket asc. Tier no label esquerdo.
+// Landscape (Delman) é 100% 3D (correção v11.23): núcleo 88–103,6m² (R$1,21–1,61M, dado real) + cobertura duplex 123–143m² (R$2,00–2,33M)
+const TICKET_T02_SURV=[
+  {n:'Nexus · Ergus · 3D · 80–96 m² · T2',lo:1.02,hi:1.50,c:ROT.indireta},
+  {n:'ORO 3D · Niágara · 3D · 80 m² · T1',lo:1.00,hi:1.54,c:ROT.direta},
+  {n:'Landscape núcleo · Delman · 3D · 88–103,6 m² · T2',lo:1.21,hi:1.61,c:ROT.indireta},
+  {n:'Vernazza Sul · Treviso · 3D · 88–90 m² · T1',lo:1.28,hi:1.59,c:ROT.direta},
+  {n:'Mount Solaro · Berg · 3D · 104 m² · T2 · estim.',lo:1.50,hi:1.70,c:ROT.indireta},
+  {n:'Reserva São Marcos Litorânea · Mota Machado · 3D · 103 m² · T2',lo:1.50,hi:1.85,c:ROT.indireta},
+  {n:'Giardino Residenza · Alfa Engenharia · 3D+4D · 99–128 m² · T2',lo:1.44,hi:2.03,c:ROT.indireta},
+  {n:'Vernazza Norte · Treviso · 3D · 130 m² · T1 · gêmeo do DM Tipo 01',lo:1.82,hi:2.24,c:ROT.direta},
+  {n:'Landscape cobertura duplex · Delman · 3D · 123–143 m² · T2',lo:2.00,hi:2.33,c:ROT.indireta},
+  {n:'Entre Rios · Mota Machado · 3D · 125–157 m² · T2',lo:1.73,hi:2.72,c:ROT.indireta}
+];
+// TICKET_SURV — array órfão (B.2 Ticket panorâmico removido); mantido como dado caso volte
+// Ordem: mediana de ticket asc. Tier no label esquerdo.
+// Banda DM: 1,57 (T0 Tipo 02) → 1,94 (T4 Tipo 01); 5 ticks médios ponderados (30u T01 + 15u T02 / 45)
+//   T0=1,72 · T1=1,76 · T2=1,79 · T2=1,83 · T3=1,86
+const TICKET_SURV=[
+  {n:'Nexus Renascença · Renascença · T2 · 31–96 m² · Studio–3D · R$ 16.107/m²',lo:0.54,hi:1.50,c:ROT.indireta},
+  {n:'Studio Design 7 · Península · T2 · 42–89 m² · Studio–3D · R$ 15.981/m²',lo:0.71,hi:1.55,c:ROT.indireta},
+  {n:'Renaissance Conceito · Renascença II · T2 · 82–110 m² · 3D · R$ 13.168/m²',lo:1.04,hi:1.57,c:ROT.indireta},
+  {n:'Reserva São Marcos · Calhau · T2 · 68–103 m² · 2D/3D · R$ 16.300/m²',lo:0.98,hi:1.85,c:ROT.indireta},
+  {n:'Mount Solaro · Península · T2 · 68–104 m² · 2D/3D · R$ 15.384/m² · estim.',lo:1.50,hi:1.70,c:ROT.indireta},
+  {n:'ORO Ponta d\'Areia · Ponta d\'Areia · T1 · 80–161 m² · 3D+4D · R$ 15.952/m²',lo:1.00,hi:2.42,c:ROT.direta},
+  {n:'Giardino Residenza · Ponta do Farol · T2 · 94–128 m² · 3D+4D · R$ 15.500/m²',lo:1.44,hi:2.03,c:ROT.indireta},
+  {n:'Vernazza · Ponta d\'Areia · T1 · 88–130 m² · 3D · R$ 15.519/m²',lo:1.28,hi:2.24,c:ROT.direta},
+  {n:'Landscape · Calhau · T2 · 88–144 m² · 3D · R$ 14.600/m²',lo:1.21,hi:2.33,c:ROT.indireta},
+  {n:'Entre Rios · Renascença II · T2 · 125–157 m² · 3D · R$ 15.200/m²',lo:1.73,hi:2.72,c:ROT.indireta},
+  {n:'Zion · Ponta d\'Areia · T1 · 149 m² · 4D · R$ 15.900/m²',lo:2.17,hi:2.56,c:ROT.direta},
+  {n:'Quartier 22 · Península · T2 · 165 m² · 3D · R$ 18.182/m²',lo:3.00,hi:3.00,c:ROT.indireta}
+];
+// Visão panorâmica — todos os empreendimentos consolidados por empreendimento (range mín–máx do empreend.)
+function drawTicket(svgId, data, axisMax, dmBand, opts){
+  opts = opts || {};
+  const svg=document.getElementById(svgId);
+  const vb=(svg.getAttribute('viewBox')||'0 0 1040 540').split(' ').map(Number);
+  const W=1040,L=330,Rp=60,top=opts.top||34,baseY=vb[3]-30;
+  const x0=opts.x0!=null?opts.x0:0.2,x1=axisMax;
+  const X=v=>L+(v-x0)/(x1-x0)*(W-L-Rp);
+  const rowH=(baseY-top)/data.length;
+  const step=opts.step||(axisMax<=2?0.2:(axisMax<=4?0.5:1.0));
+  const fmtX=opts.fmtX||(g=>'R$ '+g.toFixed(1)+' M');
+  const fmtBar=opts.fmtBar||((lo,hi)=>lo===hi?'R$ '+lo.toFixed(2).replace('.',',')+' M':'R$ '+lo.toFixed(2).replace('.',',')+'–'+hi.toFixed(2).replace('.',',')+' M');
+  const labelMode=opts.labelMode||'inside';   // 'inside' (default) ou 'above'
+  // grid + axis ticks
+  for(let g=Math.ceil(x0/step)*step;g<=x1+0.001;g+=step){
+    svg.appendChild(el('line',{x1:X(g),y1:top,x2:X(g),y2:baseY,stroke:'#2a2a2a'}));
+    svg.appendChild(el('text',{x:X(g),y:baseY+18,fill:'#6f6c66','font-size':10,'text-anchor':'middle'},fmtX(g)));
+  }
+  // DM band(s) (régua-style) — atrás dos competidores; aceita objeto único OU array
+  const bands = Array.isArray(dmBand) ? dmBand : (dmBand ? [dmBand] : []);
+  bands.forEach((b,bi)=>{
+    const bColor = b.color || '#c2a15a';
+    const natW = X(b.hi)-X(b.lo);
+    const bw = Math.max(natW,4);
+    const bx = X(b.lo) - Math.max(0,(bw-natW)/2);
+    svg.appendChild(el('rect',{x:bx,y:top,width:bw,height:baseY-top,
+      fill:bColor,'fill-opacity':0.17,stroke:bColor,'stroke-width':1}));
+    (b.ticks||[]).forEach((tk,i)=>{
+      svg.appendChild(el('line',{x1:X(tk),y1:top,x2:X(tk),y2:top+9,stroke:bColor,'stroke-width':1.5}));
+      // se bandBorderTop ativo e tick está numa borda da banda, suprime label (já marcado em border)
+      const atEdge = opts.bandBorderTop && (Math.abs(tk-b.lo)<0.001 || Math.abs(tk-b.hi)<0.001);
+      if(!atEdge){
+        const yOff = (i%2===0) ? 5 : 16;
+        svg.appendChild(el('text',{x:X(tk),y:top-yOff,fill:bColor,'font-size':9,'text-anchor':'middle'},'T'+(i+1)));
+      }
+    });
+    // bandBorderTop: rótulos do lo/hi acima do gráfico, nos bordos da banda
+    if(opts.bandBorderTop){
+      // labels explícitos preferidos (evita arredondamento de FP do toFixed); fallback p/ fmtV
+      const fmtV = opts.bandFmt || (v => (Math.round(v*10+1e-9)/10).toFixed(1).replace('.',',')+' m²');
+      const loLbl = b.loLabel || fmtV(b.lo);
+      const hiLbl = b.hiLabel || fmtV(b.hi);
+      // bandBorderLabelOutside: empurra labels para fora dos bordos (necessário em bandas estreitas)
+      if(opts.bandBorderLabelOutside){
+        svg.appendChild(el('text',{x:X(b.lo)-6,y:top-32,fill:bColor,
+          'font-size':10.5,'font-weight':700,'text-anchor':'end'},loLbl));
+        svg.appendChild(el('text',{x:X(b.hi)+6,y:top-32,fill:bColor,
+          'font-size':10.5,'font-weight':700,'text-anchor':'start'},hiLbl));
+      }else{
+        svg.appendChild(el('text',{x:X(b.lo),y:top-32,fill:bColor,
+          'font-size':10.5,'font-weight':700,'text-anchor':'middle'},loLbl));
+        svg.appendChild(el('text',{x:X(b.hi),y:top-32,fill:bColor,
+          'font-size':10.5,'font-weight':700,'text-anchor':'middle'},hiLbl));
+      }
+    }
+    // label centrado (suprime se vazio ou se bandBorderTop)
+    if(b.label && !opts.bandBorderTop){
+      let labelY;
+      if(labelMode==='above'){
+        labelY = top - 22 + bi*14;
+      }else{
+        labelY = bands.length===1 ? baseY-9 : (bi===0 ? top+22 : baseY-12);
+      }
+      svg.appendChild(el('text',{x:bx+bw/2,y:labelY,fill:bColor,
+        'font-size':10,'font-weight':700,'text-anchor':'middle'},b.label));
+    }
+  });
+  // competidores como barras de range
+  data.forEach((d,i)=>{
+    const y=top+i*rowH+rowH*0.22, h=rowH*0.52;
+    const w=Math.max(X(d.hi)-X(d.lo),4);
+    svg.appendChild(el('rect',{x:X(d.lo),y:y,width:w,height:h,fill:d.c,rx:h/2,opacity:0.85}));
+    svg.appendChild(el('text',{x:L-12,y:y+h/2+4,fill:'#ece6da','font-size':10.5,'text-anchor':'end','font-weight':500},d.n));
+    svg.appendChild(el('text',{x:X(d.hi)+8,y:y+h/2+4,fill:'#9a978f','font-size':10},fmtBar(d.lo,d.hi)));
+  });
+  // refLines: linhas verticais tracejadas em valores específicos, sobre todas as rows
+  (opts.refLines||[]).forEach((rl,i)=>{
+    const lineX = X(rl.v);
+    const lineCol = rl.color || '#c2a15a';
+    svg.appendChild(el('line',{x1:lineX,y1:top,x2:lineX,y2:baseY,
+      stroke:lineCol,'stroke-width':1.5,'stroke-dasharray':'5 4',opacity:0.85}));
+    // labels: linha única quando bandBorderTop (borders já estão em top-32); senão stagger antigo
+    const labelY = opts.bandBorderTop ? (top-12) : (top - 22 + (i%2)*14);
+    svg.appendChild(el('text',{x:lineX,y:labelY,fill:lineCol,
+      'font-size':10,'font-weight':700,'text-anchor':'middle'},rl.label));
+  });
+  svg.appendChild(el('line',{x1:L,y1:top,x2:L,y2:baseY,stroke:'#555'}));
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  drawEscada();
+  // Régua panorâmica de área — faixa competitiva -30%/+25% (banda) + linhas T01/T02 (tracejadas)
+  drawTicket('svgAreaAll',AREA_ALL,300,
+    {lo:87.29,hi:168.35,loLabel:'87,3 m²',hiLabel:'168,4 m²'},
+    {x0:20,step:50,fmtX:g=>g.toFixed(0)+' m²',fmtBar:(lo,hi)=>lo===hi?lo.toFixed(1)+' m²':lo.toFixed(1)+'–'+hi.toFixed(1)+' m²',top:55,
+     bandBorderTop:true,
+     refLines:[
+       {v:116.38,label:'116,38 m²'},
+       {v:134.68,label:'134,68 m²'}
+     ]});
+  // A.1 secundário — capturados ordenados por mediana de área (asc.); mesma escala, mesma banda
+  drawTicket('svgAreaCapt',AREA_CAPT,200,
+    {lo:87.29,hi:168.35,loLabel:'87,3 m²',hiLabel:'168,4 m²'},
+    {x0:20,step:25,fmtX:g=>g.toFixed(0)+' m²',fmtBar:(lo,hi)=>lo===hi?lo.toFixed(1)+' m²':lo.toFixed(1)+'–'+hi.toFixed(1)+' m²',top:55,
+     bandBorderTop:true,
+     refLines:[
+       {v:116.38,label:'116,38 m²'},
+       {v:134.68,label:'134,68 m²'}
+     ]});
+  // B.1 — R$/m² panorâmico dos 9 sobreviventes com tabela (estilo régua v1: dot + linha + valor + zona de giro lento)
+  // Envelope DM: 13.400 (T1) → 14.204 (T4), média ponderada por área; sem ticks internos
+  drawRegua('svgRm2Surv',RM2_SURV,{
+    h:580,x0:12000,x1:19000,stepX:1000,L:300,Rp:60,top:50,
+    dmBand:{
+      lo:13400,hi:14204,
+      ticks:[13400,13668,13936,14204],
+      loLabel:'T1 · R$ 13.400/m²',
+      hiLabel:'T4 · R$ 14.204/m²',
+      centerLabel:'ENVELOPE DM · média por tabela'
+    },
+    dz:false
+  });
+  // Régua panorâmica de dormitórios — duas faixas (Tipo 02 = slot 3D, Tipo 01 = slot 4D)
+});
+</script>
+</body>
+</html>
