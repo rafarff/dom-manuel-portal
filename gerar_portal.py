@@ -22,7 +22,7 @@ FLUXO DE ATUALIZAÇÃO:
 CONFIG abaixo: senha e tabela vigente.
 """
 
-import os, html
+import os, re, html
 from openpyxl import load_workbook
 
 # ───────────────────────── CONFIG ─────────────────────────
@@ -30,6 +30,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 COMERCIAL = os.path.abspath(os.path.join(HERE, ".."))
 PAINEL = os.path.join(COMERCIAL, "_Controle_Comercial", "01_Controle_Comercial_Dom_Manuel.xlsx")
 REGUA  = os.path.join(COMERCIAL, "01_Tabela_Comercial", "01_Tabela_Comercial_Dom_Manuel_v3.xlsx")
+PESQUISA_SRC = os.path.join(COMERCIAL, "00_Pesquisa_Mercado", "Dom_Manuel_Inteligencia_Comercial.html")  # fonte (cópia do IM)
+PESQUISA_OUT = os.path.join(HERE, "pesquisa_mercado.html")  # gerado (tematizado) — não editar à mão
 OUT    = os.path.join(HERE, "index.html")
 
 CONFIG = {
@@ -130,9 +132,9 @@ def mascara(status):
     s = (status or "").lower()
     if "permuta" in s or "vendid" in s:
         return "Vendido" if CONFIG["mostrar_vendido"] else "Reservado"
-    if "contrato" in s or "reserv" in s:
-        return "Reservado"
-    return "Disponível"
+    if s.startswith("dispon") or s == "":
+        return "Disponível"
+    return "Reservado"  # qualquer status colocado: reservado/documentação/em assinatura/assinado/boleto
 
 def ler_tabela(key):
     """Lê a aba TX da régua -> blocos (Final/Tipo) com colunas de parcelas + observações."""
@@ -572,8 +574,32 @@ function printFolha(which){{
 </script>
 </body></html>"""
 
+# Pesquisa de Mercado: tematizar a fonte (cópia do IM) para o tema do portal + remover botão de imprimir.
+# Fonte única = 00_Pesquisa_Mercado; a versão do portal é GERADA daqui (não copiada à mão).
+SUBS_PESQUISA = [
+    ("--line:#333", "--line:#3a342a"),          # 3-dígitos: precisa do contexto da var
+    ("#151515", "#16140f"), ("#161616", "#16140f"), ("#0e0e0e", "#16140f"),
+    ("#1d1d1d", "#1f1c16"), ("#1a1a1a", "#1f1c16"), ("#1f1c12", "#1f1c16"),
+    ("#232323", "#26221b"), ("#262626", "#26221b"), ("#2a2a2a", "#2a261d"),
+    ("#C9A84C", "#c2a15a"), ("#c9a84c", "#c2a15a"), ("#E8D5A3", "#d9c08a"),
+    ("#8B6914", "#9c7b2e"), ("#e9e7e2", "#ece6da"), ("#9a978f", "#9a9285"),
+    ("rgba(201,168,76", "rgba(194,161,90"),
+]
+def gerar_pesquisa():
+    if not os.path.exists(PESQUISA_SRC):
+        print("  (aviso: fonte da pesquisa não encontrada — pesquisa_mercado.html mantida como está)")
+        return False
+    txt = open(PESQUISA_SRC, encoding="utf-8").read()
+    for a, b in SUBS_PESQUISA:
+        txt = txt.replace(a, b)
+    txt = re.sub(r'<button class="printbtn".*?</button>', "", txt, flags=re.S)   # tira o botão
+    txt = re.sub(r'\.printbtn\b[^{]*\{[^}]*\}', "", txt, flags=re.S)             # tira a CSS do botão
+    open(PESQUISA_OUT, "w", encoding="utf-8").write(txt)
+    return True
+
 # ───────────────────────── MAIN ─────────────────────────
 def main():
+    pesq_ok = gerar_pesquisa()
     status_by_apto, atual = ler_painel()
     vigente = CONFIG["vigente"]
     C = TEMAS.get(CONFIG["tema"], TEMAS["contraste"])
