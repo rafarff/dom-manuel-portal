@@ -5,20 +5,20 @@
 <title>Dom Manuel · Apresentação Comercial</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg-dark:#5D7064;
-    --bg-cream:#E6DABB;
-    --bg-sand:#ECE2C5;
-    --terracota:#3D4E45;
-    --ouro:#DDD0B4;
+    --bg-dark:#E6DDD0;
+    --bg-cream:#E6DDD0;
+    --bg-sand:#FAF6F0;
+    --terracota:#C8A06B;
+    --ouro:#C8A06B;
     --text-dark:#2C2A24;
-    --text-cream:#F2ECD8;
-    --text-mute:#7E7A6A;
+    --text-cream:#4A4238;
+    --text-mute:#A2937D;
 
-    --serif:'Cormorant Garamond', 'Century Gothic', Georgia, serif;
-    --sans:'Inter','Helvetica Neue', Arial, sans-serif;
+    --serif:'Julius Sans One', 'Century Gothic', Georgia, sans-serif;
+    --sans:'Montserrat','Helvetica Neue', Arial, sans-serif;
 
     --pad-x:140px;
     --pad-y:120px;
@@ -43,25 +43,46 @@
     overflow:hidden;
   }
 
+
+  /* Ajuste: secundários em Montserrat Light */
+  body, section{font-weight:300;}
+  p, .capa-place, .capa-subplace, .capa-meta, .implant-sub, .framed-cap,
+  .footer-mark, .footer-page, .planta-col-foot{font-weight:300;}
+
+  /* Chancela institucional — coroa (manual de marca, seção 4) */
+  section::after{
+    content:"";
+    position:absolute;
+    top:20px; right:56px;
+    width:66px; height:30px;
+    background:url('assets/chancela-coroa.png') center/contain no-repeat;
+    opacity:.9;
+    z-index:60;
+    pointer-events:none;
+  }
+  
+  section{position:relative;}
+
+  /* Coroa alinhada à legenda nos slides de imagem, sem sobrepor a foto */
+
   /* Background variants */
   .bg-dark{
     background-color:var(--bg-dark);
     background-image:
-      radial-gradient(ellipse 80% 55% at 22% 15%, rgba(220,220,200,.28), transparent 65%),
-      radial-gradient(ellipse 60% 45% at 78% 28%, rgba(200,210,200,.18), transparent 70%),
-      radial-gradient(ellipse 55% 40% at 70% 80%, rgba(30,40,35,.32), transparent 75%),
-      radial-gradient(ellipse 50% 38% at 15% 78%, rgba(38,48,42,.25), transparent 75%),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='3' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .42  0 0 0 0 .52  0 0 0 0 .46  0 0 0 .22 0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>"),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='500'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .13 0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
-    background-size:auto, auto, auto, auto, 1200px 1200px, 500px 500px;
-    background-blend-mode:normal, screen, multiply, multiply, overlay, overlay;
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='700' height='700'><filter id='f'><feTurbulence type='turbulence' baseFrequency='0.9' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .48  0 0 0 0 .44  0 0 0 .06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23f)'/></svg>"),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'><filter id='m'><feTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='5' seed='11' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .49  0 0 0 0 .46  0 0 0 .05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23m)'/></svg>");
+    background-size:700px 700px, 1400px 1400px;
+    background-blend-mode:overlay, overlay;
     color:var(--text-cream);
   }
   .bg-cream{
     background-color:var(--bg-cream);
     background-image:
-      radial-gradient(ellipse 130% 90% at 30% 5%, rgba(255,250,232,.55), transparent 60%),
-      radial-gradient(ellipse 90% 70% at 90% 100%, rgba(160,140,100,.10), transparent 75%);
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='700' height='700'><filter id='f'><feTurbulence type='turbulence' baseFrequency='0.9' numOctaves='2' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .48  0 0 0 0 .44  0 0 0 .06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23f)'/></svg>"),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'><filter id='m'><feTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='5' seed='11' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .49  0 0 0 0 .46  0 0 0 .05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23m)'/></svg>");
+    background-size:700px 700px, 1400px 1400px;
+    background-blend-mode:overlay, overlay;
+    
   }
 
   /* ----- Typographic primitives ----- */
@@ -81,7 +102,7 @@
     font-weight:500;
     color:var(--text-mute);
   }
-  .label-cream{color:rgba(239,233,222,.78);}
+  .label-cream{color:rgba(74,66,56,.78);}
   .body{
     font-family:var(--sans);
     font-size:var(--type-body);
@@ -113,6 +134,7 @@
 
   /* ----- Footer monogram (DM in gold) ----- */
   .footer-mark{
+    display:none;
     position:absolute;
     right:60px;
     bottom:48px;
@@ -125,7 +147,7 @@
     white-space:nowrap;
   }
   .footer-mark.on-dark{color:var(--ouro);}
-  .bg-cream .footer-mark{color:rgba(61,78,69,.60);}
+  .bg-cream .footer-mark{color:rgba(150,114,66,.60);}
   .footer-page{
     position:absolute;
     left:60px;
@@ -137,12 +159,13 @@
     font-variant-numeric:tabular-nums;
     white-space:nowrap;
   }
-  .bg-dark .footer-page{color:rgba(239,233,222,.45);}
+  .bg-dark .footer-page{color:rgba(74,66,56,.45);}
 
   /* ----- Slide-specific layouts ----- */
 
   /* 01 Capa */
   .capa{
+    transform:translateY(72px);
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -154,7 +177,7 @@
   .capa-logo{
     width:1080px;
     height:auto;
-    margin-bottom:90px;
+    margin-bottom:56px;
     opacity:1;
   }
   .capa-place{
@@ -162,7 +185,7 @@
     font-size:26px;
     letter-spacing:.62em;
     text-transform:uppercase;
-    color:rgba(239,233,222,.55);
+    color:rgba(74,66,56,.55);
     font-weight:400;
     margin-bottom:14px;
   }
@@ -171,7 +194,7 @@
     font-size:16px;
     letter-spacing:.48em;
     text-transform:uppercase;
-    color:rgba(239,233,222,.32);
+    color:rgba(74,66,56,.32);
     font-weight:400;
     margin-bottom:34px;
   }
@@ -180,7 +203,7 @@
     font-size:18px;
     letter-spacing:.52em;
     text-transform:uppercase;
-    color:rgba(239,233,222,.32);
+    color:rgba(74,66,56,.32);
     font-weight:400;
   }
   .capa-rule{
@@ -203,7 +226,7 @@
     color:rgba(44,42,36,.40);
   }
   .capa.inverse .capa-rule{
-    background:#3D4E45;
+    background:#C8A06B;
     opacity:.42;
   }
 
@@ -259,7 +282,7 @@
     font-size:640px;
     line-height:.78;
     font-weight:300;
-    color:#2A3933;
+    color:#332B21;
     opacity:.42;
     letter-spacing:0;
     pointer-events:none;
@@ -287,7 +310,7 @@
     font-family:var(--serif);
     font-size:38px;
     font-style:italic;
-    color:rgba(239,233,222,.62);
+    color:rgba(74,66,56,.62);
     margin-top:42px;
     max-width:900px;
     line-height:1.4;
@@ -306,7 +329,7 @@
     aspect-ratio:1662 / 946;
     position:relative;
     overflow:hidden;
-    border:1px solid rgba(61,78,69,.18);
+    border:1px solid rgba(150,114,66,.18);
     background:transparent;
   }
   .split.bairro .split-map-img{
@@ -321,7 +344,7 @@
     font-size:16px;
     letter-spacing:.32em;
     text-transform:uppercase;
-    color:rgba(239,233,222,.92);
+    color:rgba(250,246,240,.92);
     background:rgba(20,28,24,.62);
     backdrop-filter:blur(6px);
     padding:9px 14px;
@@ -380,7 +403,7 @@
   .split-image{
     width:100%;
     height:760px;
-    background:#D3C9AB;
+    background:#E6DDD0;
     background-size:cover;
     background-position:center;
   }
@@ -389,7 +412,7 @@
   .ph{
     width:100%;
     height:100%;
-    background:repeating-linear-gradient(135deg,#E0D5B6 0 18px,#D6CAA8 18px 36px);
+    background:repeating-linear-gradient(135deg,#EFE7DA 0 18px,#E6DDD0 18px 36px);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -403,8 +426,8 @@
     box-sizing:border-box;
   }
   .ph.dark{
-    background:repeating-linear-gradient(135deg,#3D4E45 0 18px,#34453C 18px 36px);
-    color:rgba(239,233,222,.5);
+    background:repeating-linear-gradient(135deg,#C8A06B 0 18px,#4A3F30 18px 36px);
+    color:rgba(74,66,56,.5);
   }
   .ph-inner{max-width:80%;line-height:1.6;}
 
@@ -420,8 +443,8 @@
     width:100%;
     height:100%;
     overflow:hidden;
-    background:#D3C9AB;
-    border:1px solid rgba(61,78,69,.18);
+    background:#E6DDD0;
+    border:1px solid rgba(150,114,66,.18);
   }
   .locmap-img{
     position:absolute;
@@ -437,7 +460,7 @@
     z-index:4;
     text-align:right;
     align-items:flex-end;
-    background:rgba(20,28,24,.62);
+    background:rgba(244,237,225,.88);
     backdrop-filter:blur(7px);
     border:1px solid rgba(184,153,104,.40);
     padding:20px 26px 22px;
@@ -467,7 +490,7 @@
     font-style:italic;
     font-size:24px;
     line-height:1.35;
-    color:rgba(239,233,222,.82);
+    color:rgba(74,66,56,.82);
     font-weight:300;
   }
   /* Pins de localização — pino e etiqueta são elementos SEPARADOS,
@@ -489,8 +512,8 @@
     width:38px;
     height:38px;
     box-sizing:border-box;
-    background:#3D4E45;
-    border:3px solid #F2ECD8;
+    background:#C8A06B;
+    border:3px solid #FAF6F0;
     border-radius:50% 50% 50% 0;
     transform:rotate(-45deg);
   }
@@ -500,7 +523,7 @@
     width:13px;
     height:13px;
     border-radius:50%;
-    background:#F2ECD8;
+    background:#FAF6F0;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
@@ -517,7 +540,7 @@
   }
   .mpin.is-site .mpin-shape::after{
     width:16px;height:16px;
-    background:#3D4E45;
+    background:#C8A06B;
   }
 
   .mlabel{
@@ -525,16 +548,16 @@
     z-index:5;
     transform:translate(-50%,-50%);
     font-family:var(--sans);
-    font-size:19px;
-    letter-spacing:.10em;
+    font-size:15px;
+    letter-spacing:.08em;
     text-transform:uppercase;
-    font-weight:600;
-    color:var(--text-cream);
-    background:rgba(20,28,24,.74);
+    font-weight:400;
+    color:rgba(74,66,56,.85);
+    background:rgba(244,237,225,.72);
     backdrop-filter:blur(4px);
     border:1px solid rgba(184,153,104,.42);
     padding:7px 13px;
-    box-shadow:0 2px 10px rgba(0,0,0,.30);
+    box-shadow:0 2px 8px rgba(0,0,0,.14);
     white-space:nowrap;
     cursor:grab;
     touch-action:none;
@@ -542,15 +565,13 @@
   }
   .mlabel:active{cursor:grabbing;}
   .mlabel.is-site{
-    font-family:var(--serif);
-    font-style:italic;
-    font-size:26px;
-    letter-spacing:.04em;
-    text-transform:none;
-    font-weight:500;
-    color:#2C2A24;
-    background:var(--bg-cream);
-    border-color:rgba(184,153,104,.7);
+    font-size:24px;
+    letter-spacing:.14em;
+    font-weight:600;
+    color:#FAF6F0;
+    background:#C8A06B;
+    border-color:#FAF6F0;
+    box-shadow:0 3px 12px rgba(0,0,0,.25);
   }
 
   /* 06b — PROJETISTAS & SÓCIOS (autoridade) */
@@ -627,7 +648,7 @@
     color:var(--text-mute);
     font-weight:500;
     padding-bottom:14px;
-    border-bottom:1px solid rgba(61,78,69,.18);
+    border-bottom:1px solid rgba(150,114,66,.18);
   }
   .partners-row{
     display:grid;
@@ -722,7 +743,7 @@
     height:100%;
     background-size:cover;
     background-position:center;
-    background-color:#3D4E45;
+    background-color:#C8A06B;
   }
   /* Imagem edge-to-edge nas laterais, só faixas horizontais do fundo */
   .hero.bleed-x{padding:70px 0;}
@@ -763,7 +784,7 @@
   .hero-label.above{
     font-size:15px;
     top:26px;
-    right:90px;
+    right:150px;
     color:var(--text-mute);
     background:transparent;
     backdrop-filter:none;
@@ -844,7 +865,7 @@
     flex:1;
     background-size:cover;
     background-position:center;
-    background-color:#D3C9AB;
+    background-color:#E6DDD0;
   }
   .dual-cap{
     font-family:var(--sans);
@@ -858,10 +879,10 @@
   /* 10 Implantação — pavimento de áreas comuns */
   .implant{
     height:100%;
-    padding:var(--pad-y) var(--pad-x) calc(var(--pad-y) - 20px);
+    padding:60px 60px 50px;
     display:flex;
     flex-direction:column;
-    gap:30px;
+    gap:18px;
   }
   .implant-head{
     display:flex;
@@ -902,21 +923,21 @@
   .implant-body{
     flex:1;
     display:grid;
-    grid-template-columns:2.05fr 1fr;
-    gap:56px;
+    grid-template-columns:3.6fr 1fr;
+    gap:30px;
     align-items:stretch;
     min-height:0;
   }
   .implant-plan{
     position:relative;
-    background:#EFE6CB;
-    border:1px solid rgba(58,45,34,.10);
+    background:transparent;
+    border:none;
     overflow:hidden;
   }
   .implant-plan-img{
     position:absolute;
     inset:0;
-    background-image:url('assets/implantacao-c.jpg');
+    background-image:url('assets/implantacao-lazer-c.webp');
     background-size:contain;
     background-repeat:no-repeat;
     background-position:center;
@@ -927,7 +948,7 @@
     width:46px;
     height:46px;
     border-radius:50%;
-    background:rgba(61,78,69,.78);
+    background:rgba(150,114,66,.78);
     color:var(--text-cream);
     backdrop-filter:blur(2px);
     display:flex;
@@ -951,8 +972,8 @@
   .implant-list{
     display:flex;
     flex-direction:column;
-    justify-content:flex-start;
-    gap:4px;
+    justify-content:center;
+    gap:10px;
     padding-left:4px;
   }
   .implant-list-head{
@@ -969,7 +990,7 @@
     grid-template-columns:44px 1fr;
     align-items:baseline;
     gap:12px;
-    padding:3px 0;
+    padding:7px 0;
     border-bottom:1px solid rgba(58,45,34,.10);
   }
   .implant-item:last-child{border-bottom:none;}
@@ -1014,14 +1035,14 @@
     height:100%;
     background-size:cover;
     background-position:center;
-    background-color:#3D4E45;
+    background-color:#C8A06B;
   }
   .amb-img.ph{
-    background:repeating-linear-gradient(135deg,#3D4E45 0 22px,#34453C 22px 44px);
+    background:repeating-linear-gradient(135deg,#C8A06B 0 22px,#4A3F30 22px 44px);
     display:flex;
     align-items:center;
     justify-content:center;
-    color:rgba(239,233,222,.55);
+    color:rgba(74,66,56,.55);
     font-family:'Courier New',monospace;
     font-size:18px;
     letter-spacing:.2em;
@@ -1110,8 +1131,8 @@
   }
   .planta-canvas{
     flex:1;
-    background:var(--bg-sand);
-    border:1px solid rgba(58,45,34,.08);
+    background:transparent;
+    border:none;
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
     position:relative;
@@ -1291,7 +1312,7 @@
     aspect-ratio:1075 / 1463;
     max-height:92%;
     border:2px dashed rgba(58,45,34,.28);
-    background:repeating-linear-gradient(135deg, var(--bg-sand) 0 20px, #EDE3C8 20px 40px);
+    background:repeating-linear-gradient(135deg, var(--bg-sand) 0 20px, #F4EDE1 20px 40px);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -1361,7 +1382,7 @@
     font-family:var(--serif);
     font-size:120px;
     line-height:.85;
-    color:rgba(239,233,222,.18);
+    color:rgba(74,66,56,.18);
     font-weight:300;
     margin-bottom:6px;
   }
@@ -1369,7 +1390,7 @@
     font-family:var(--serif);
     font-size:32px;
     font-style:italic;
-    color:rgba(239,233,222,.78);
+    color:rgba(74,66,56,.78);
     line-height:1.45;
     max-width:1300px;
     font-weight:300;
@@ -1488,7 +1509,7 @@
     gap:60px;
   }
   .closer-tile{
-    background:#ECE2C5;
+    background:#FAF6F0;
     border:1px solid rgba(184,153,104,.42);
     display:flex;
     align-items:center;
@@ -1544,7 +1565,7 @@
     white-space:nowrap;
   }
   .bg-cream .wm-band{background:rgba(44,42,36,.03);color:rgba(44,42,36,.20);}
-  .bg-dark .wm-band{background:rgba(242,236,216,.04);color:rgba(242,236,216,.24);}
+  .bg-dark .wm-band{background:rgba(250,246,240,.04);color:rgba(74,66,56,.24);}
   /* Slides com foto — faixa mais discreta */
   .wm-band.wm-photo{
     background:rgba(18,24,20,.10);
@@ -1608,7 +1629,7 @@
     font-family:var(--serif);
     font-size:30px;
     line-height:1.55;
-    color:rgba(239,233,222,.85);
+    color:rgba(74,66,56,.85);
     font-weight:300;
   }
   .oport-col-body strong{
@@ -1625,7 +1646,7 @@
     font-size:20px;
     letter-spacing:.32em;
     text-transform:uppercase;
-    color:rgba(239,233,222,.45);
+    color:rgba(74,66,56,.45);
     font-weight:400;
     margin-top:40px;
   }
@@ -1644,7 +1665,7 @@
   .oport-step-t{
     font-family:var(--serif);
     font-size:26px;
-    color:rgba(239,233,222,.78);
+    color:rgba(74,66,56,.78);
     font-weight:300;
     line-height:1.4;
   }
@@ -1658,13 +1679,13 @@
   <!-- 01 — CAPA -->
   <section class="bg-dark" data-screen-label="01 Capa" data-om-id="e8910dbc:8" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="0">
     <div class="capa" data-om-id="e8910dbc:9">
-      <img class="capa-logo" src="assets/logo-champagne-warm.png" alt="Dom Manuel" data-om-id="e8910dbc:10">
+      <img class="capa-logo" src="assets/marca-dom-manuel-horiz.png" alt="Dom Manuel Residencial" style="width:820px;" data-om-id="e8910dbc:10">
       <div class="capa-rule" data-om-id="e8910dbc:11"></div>
       <div class="capa-place" data-om-id="e8910dbc:12">Ponta D’Areia / Lagoa</div>
       <div class="capa-subplace" data-om-id="e8910dbc:13">São Luís · Maranhão</div>
       <div class="capa-meta" data-om-id="e8910dbc:14">Apresentação Comercial · Preliminar · 2026</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(-360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 02 — CAPA INVERSA (logo verde sobre champagne) -->
   <section class="bg-cream" data-screen-label="02 Capa Inversa" data-om-id="e8910dbc:15" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="1">
@@ -1673,16 +1694,16 @@
       <div class="capa-place" data-om-id="e8910dbc:19">Brisa · Nascente · Privacidade</div>
     </div>
     <div class="footer-mark" data-om-id="e8910dbc:20">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(-180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 05b — ENTRADA / ACESSO -->
   <section class="bg-cream" data-screen-label="08 A Entrada" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
     <div class="hero bleed-x" id="slide3-piscina">
       <div class="hero-img" style="background-image:url('assets/piscina-04-c.webp');"></div>
       <div class="hero-label above">Piscina</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 20e — CONCEITO / MANIFESTO -->
   <section class="bg-dark" data-screen-label="Diferenciais · Conceito" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
@@ -1709,16 +1730,16 @@
       </div>
     </div>
     <div class="footer-mark on-dark">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(-180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 06d — RECEPÇÃO / LOBBY (novo) -->
   <section class="bg-cream" data-screen-label="Recepção · Lobby" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/recepcao-lobby-c.webp');"></div>
       <div class="hero-label above">Recepção</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 06b — PROJETISTAS & SÓCIOS -->
   <section class="bg-cream" data-screen-label="Projetistas e Sócios">
@@ -1751,23 +1772,7 @@
         </figure>
       </div>
 
-      <div class="team-partners">
-        <div class="partners-label">Realização &amp; Construção</div>
-        <div class="partners-row">
-          <div class="partner">
-            <div class="partner-logo"><img src="assets/logo-dom-incorp.png" alt="Dom Incorporação" style="max-height:118px;"></div>
-            <div class="partner-role">Incorporadora e Construtora</div>
-          </div>
-          <div class="partner">
-            <div class="partner-logo"><img src="assets/logo-silveira.png" alt="Silveira Inc." style="max-height:78px;"></div>
-            <div class="partner-role">Incorporadora</div>
-          </div>
-          <div class="partner">
-            <div class="partner-logo"><img src="assets/logo-gomes-sodre.png" alt="Gomes Sodré" style="max-height:48px;"></div>
-            <div class="partner-role">Incorporadora</div>
-          </div>
-        </div>
-      </div>
+      
     </div>
     <div class="footer-mark">DOM MANUEL</div>
   </section>
@@ -1777,9 +1782,9 @@
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/circulacao-paisagismo-2-c.webp');"></div>
       <div class="hero-label above">Circulação &amp; Paisagismo</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 03 — DIVIDER 01 LOCALIZAÇÃO -->
   <section class="bg-dark" data-screen-label="03 Divider Localização" data-om-id="e8910dbc:22" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="2">
@@ -1788,7 +1793,7 @@
       <div class="divider-sub" data-om-id="e8910dbc:27">Perto de tudo, longe do barulho.<br data-om-id="e8910dbc:28">Voltado para o nascente e para a brisa do nordeste.</div>
     </div>
     <div class="footer-mark on-dark" data-om-id="e8910dbc:29">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(0px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 04 — O BAIRRO -->
   <section class="bg-cream" data-screen-label="04 O Bairro" data-om-id="e8910dbc:31" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="3">
@@ -1803,7 +1808,7 @@
       </div>
     </div>
     <div class="footer-mark" data-om-id="e8910dbc:44">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 04b — LOCALIZAÇÃO APROXIMADA -->
   <section class="bg-cream" data-screen-label="Localização Aproximada">
@@ -1813,8 +1818,8 @@
 
         <div class="locmap-head">
           <div class="locmap-eyebrow">O Bairro · Vista aérea</div>
-          <div class="locmap-title">No coração da<br>Ponta D’Areia</div>
-          <div class="locmap-sub">A poucos minutos do que importa — entre a Lagoa e o mar.</div>
+          
+          <div class="locmap-sub">A poucos minutos do que importa.</div>
         </div>
 
         <!-- Pinos de referência (arraste cada um) -->
@@ -1829,7 +1834,7 @@
         <div class="mlabel" data-drag data-key="lbl-fribal" style="left:46.32%;top:5.49%;">Fribal</div>
         <div class="mlabel" data-drag data-key="lbl-tiger" style="left:11.1%;top:78.59%;">Hungry Tiger</div>
         <div class="mlabel" data-drag data-key="lbl-poty" style="left:13.69%;top:18.22%;">Rio Poty</div>
-        <div class="mlabel" data-drag data-key="lbl-mandala" style="left:92.15%;top:70.23%;">Mandala / Seu Luís</div>
+        <div class="mlabel" data-drag data-key="lbl-mandala" style="left:84%;top:70.23%;">Mandala / Seu Luís / Nanai</div>
 
         <script>
         (function(){
@@ -1917,7 +1922,7 @@
       </div>
     </div>
     <div class="footer-mark" data-om-id="e8910dbc:70">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
 
 
@@ -1930,9 +1935,19 @@
     <div class="hero bleed-x" data-om-id="e8910dbc:73">
       <div class="hero-img" style="background-image:url('assets/recepcao-c.webp');" data-om-id="e8910dbc:74"></div>
       <div class="hero-label above" data-om-id="e8910dbc:75">Recepção</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(-360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
+
+  <!-- NOVO 06 Recepção · Detalhe -->
+  <section class="bg-cream" data-screen-label="06 Recepção · Detalhe" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="hero bleed-x">
+      <div class="hero-img" style="background-image:url('assets/recepcao-02-c.webp');"></div>
+      <div class="hero-label above">Recepção</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
+    </div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
+</section>
 
   <!-- 06b — O MEZANINO -->
   
@@ -1942,9 +1957,9 @@
     <div class="hero bleed-x" data-om-id="e8910dbc:79">
       <div class="hero-img" style="background-image:url('assets/fachada-02-c.webp');" data-om-id="e8910dbc:80"></div>
       <div class="hero-label above" data-om-id="e8910dbc:81">Fachada</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(-180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 08 — A FACHADA · VISTA COMPLETA -->
   <section class="bg-cream" data-screen-label="08 Fachada Completa" data-om-id="e8910dbc:84" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="7">
@@ -1956,7 +1971,26 @@
       </div>
     </div>
     <div class="footer-mark" data-om-id="e8910dbc:90">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(0px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
+
+  <!-- NOVO 08 Fachada · Vista -->
+  <section class="bg-cream" data-screen-label="08 Fachada · Vista" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="hero bleed-x">
+      <div class="hero-img" style="background-image:url('assets/fachada-04-c.webp');"></div>
+      <div class="hero-label above">Fachada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
+    </div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
+</section>
+
+  <!-- NOVO 08 Fachada · Torre -->
+  <section class="bg-cream" data-screen-label="08 Fachada · Torre" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="hero triptych" style="grid-template-columns:1fr 1fr;">
+      <div class="trip-img" style="background-image:url('assets/fachada-05-c.webp');"></div>
+      <div class="trip-img" style="background-image:url('assets/fachada-06-c.webp');"></div>
+    </div>
+    <div class="footer-mark">DOM MANUEL</div>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 08 — DIVIDER 02 ÁREAS COMUNS -->
   <section class="bg-dark" data-screen-label="09 Divider Áreas Comuns" data-om-id="e8910dbc:92" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="8">
@@ -1965,7 +1999,7 @@
       <div class="divider-sub" data-om-id="e8910dbc:97">O lazer completo, num pavimento dedicado.</div>
     </div>
     <div class="footer-mark on-dark" data-om-id="e8910dbc:98">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 10 — IMPLANTAÇÃO DO PAVIMENTO DE ÁREAS COMUNS -->
   <section class="bg-cream" data-screen-label="10 Implantação Áreas Comuns" data-om-id="e8910dbc:100" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="9">
@@ -1973,9 +2007,9 @@
       <div class="implant-head" data-om-id="e8910dbc:102">
         <div class="implant-head-left" data-om-id="e8910dbc:103">
           <div class="implant-eyebrow" data-om-id="e8910dbc:104">Áreas Comuns</div>
-          <div class="implant-title" data-om-id="e8910dbc:105">Implantação do Pavimento</div>
+          
         </div>
-        <div class="implant-sub" data-om-id="e8910dbc:106">Um andar inteiro dedicado ao lazer — treze ambientes integrados pela paisagem.</div>
+        
       </div>
 
       <div class="implant-body" data-om-id="e8910dbc:107">
@@ -1983,19 +2017,19 @@
           <div class="implant-plan-img" data-om-id="e8910dbc:109"></div>
 
           <!-- Pins numerados — reposicione livremente arrastando ou ajustando left/top -->
-          <div class="pin" style="left:78.92%;top:57.71%;" data-om-id="e8910dbc:110" data-idx="0">1</div>
-          <div class="pin" style="left:86.13%;top:19.34%;" data-om-id="e8910dbc:111" data-idx="1">2</div>
-          <div class="pin" style="left:85.98%;top:7.39%;" data-om-id="e8910dbc:112" data-idx="2">3</div>
-          <div class="pin" style="left:66.92%;top:22.74%;" data-om-id="e8910dbc:113" data-idx="3">4</div>
-          <div class="pin" style="left:57.95%;top:45.98%;" data-om-id="e8910dbc:114" data-idx="4">5</div>
-          <div class="pin" style="left:58.88%;top:68.14%;" data-om-id="e8910dbc:116" data-idx="5">6</div>
-          <div class="pin" style="left:42.22%;top:9.63%;" data-om-id="e8910dbc:117" data-idx="6">7</div>
-          <div class="pin" style="left:49.07%;top:67.7%;" data-om-id="e8910dbc:118" data-idx="7">8</div>
-          <div class="pin" style="left:42.92%;top:65.65%;" data-om-id="e8910dbc:119" data-idx="8">9</div>
-          <div class="pin" style="left:30.4%;top:69.29%;" data-om-id="e8910dbc:120" data-idx="9">10</div>
-          <div class="pin" style="left:22.78%;top:44.82%;" data-om-id="e8910dbc:121" data-idx="10">11</div>
-          <div class="pin" style="left:25.75%;top:18.7%;" data-om-id="e8910dbc:122" data-idx="11">12</div>
-          <div class="pin" style="left:36.4%;top:46.58%;" data-om-id="e8910dbc:123" data-idx="12">13</div>
+          <div class="pin" style="left:80.24%;top:62.19%;" data-om-id="e8910dbc:110" data-idx="0">1</div>
+          <div class="pin" style="left:91.54%;top:20.98%;" data-om-id="e8910dbc:111" data-idx="1">2</div>
+          <div class="pin" style="left:91.52%;top:10.63%;" data-om-id="e8910dbc:112" data-idx="2">3</div>
+          <div class="pin" style="left:61.48%;top:16.49%;" data-om-id="e8910dbc:113" data-idx="3">4</div>
+          <div class="pin" style="left:63.23%;top:55.61%;" data-om-id="e8910dbc:114" data-idx="4">5</div>
+          <div class="pin" style="left:63.49%;top:76.37%;" data-om-id="e8910dbc:116" data-idx="5">6</div>
+          <div class="pin" style="left:35.44%;top:14.69%;" data-om-id="e8910dbc:117" data-idx="6">7</div>
+          <div class="pin" style="left:46.38%;top:74.82%;" data-om-id="e8910dbc:118" data-idx="7">8</div>
+          <div class="pin" style="left:30.77%;top:81.92%;" data-om-id="e8910dbc:119" data-idx="8">9</div>
+          <div class="pin" style="left:18.13%;top:78.6%;" data-om-id="e8910dbc:120" data-idx="9">10</div>
+          <div class="pin" style="left:13.03%;top:49.39%;" data-om-id="e8910dbc:121" data-idx="10">11</div>
+          <div class="pin" style="left:13.38%;top:13.52%;" data-om-id="e8910dbc:122" data-idx="11">12</div>
+          <div class="pin" style="left:28.91%;top:49.34%;" data-om-id="e8910dbc:123" data-idx="12">13</div>
           <script>
           (function(){
             // Drag-to-position pins. Hold Shift + click pin to reset to default.
@@ -2050,6 +2084,7 @@
         </div>
 
         <div class="implant-list" data-om-id="e8910dbc:125">
+          <div class="implant-sub" style="margin-bottom:8px;">Um andar inteiro dedicado ao lazer.</div>
           <div class="implant-list-head" data-om-id="e8910dbc:126">Legenda · Ambientes</div>
           <div class="implant-item" data-om-id="e8910dbc:127"><div class="implant-num" data-om-id="e8910dbc:128">01</div><div class="implant-name" data-om-id="e8910dbc:129">Piscina</div></div>
           <div class="implant-item" data-om-id="e8910dbc:130"><div class="implant-num" data-om-id="e8910dbc:131">02</div><div class="implant-name" data-om-id="e8910dbc:132">Sauna</div></div>
@@ -2068,35 +2103,55 @@
       </div>
     </div>
     <div class="footer-mark" data-om-id="e8910dbc:174">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 16 — ACADEMIA -->
   <section class="bg-cream" data-screen-label="18 Academia" data-om-id="e8910dbc:253" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="17">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/academia-new-c.jpg');"></div>
       <div class="hero-label above">Academia</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
       <img src="assets/technogym-logo.png" alt="Technogym" style="position:absolute;right:28px;bottom:120px;height:88px;width:auto;">
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(0px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
+</section>
+
+  <!-- NOVO 13 Academia · Detalhe -->
+  <section class="bg-cream" data-screen-label="13 Academia · Detalhe" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="hero bleed-x">
+      <div class="hero-img" style="background-image:url('assets/academia-04-c.webp');"></div>
+      <div class="hero-label above">Academia</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
+    </div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
+</section>
+
+  <!-- NOVO 13 Academia · Ambiente -->
+  <section class="bg-cream" data-screen-label="13 Academia · Ambiente" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="hero bleed-x">
+      <div class="hero-img" style="background-image:url('assets/academia-03-c.webp');"></div>
+      <div class="hero-label above">Academia</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
+    </div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section>
 
   <!-- 16b — ACADEMIA (2) -->
   <section class="bg-cream" data-screen-label="Technogym Checkup" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
     <style>
-      .checkup{height:100%;display:grid;grid-template-columns:0.92fr 1.18fr 0.6fr;}
-      .checkup-env{background-image:url('assets/checkup-ambiente-c.jpg');background-size:cover;background-position:center;}
+      .checkup{height:100%;display:grid;grid-template-columns:0.92fr 1.18fr;}
+      .checkup-env{background-image:url('assets/checkup-ambiente-c.jpg');background-size:contain;background-repeat:no-repeat;background-position:center;margin:40px 0 40px 40px;}
       .checkup-body{padding:96px 66px;display:flex;flex-direction:column;justify-content:center;}
       .checkup-eyebrow{font-family:var(--sans);font-size:22px;letter-spacing:.42em;text-transform:uppercase;color:var(--text-mute);font-weight:500;margin-bottom:22px;}
       .checkup-title{font-family:var(--serif);font-size:86px;line-height:.98;font-weight:300;color:var(--text-dark);letter-spacing:.01em;}
       .checkup-lead{font-family:var(--serif);font-size:38px;font-style:italic;color:var(--terracota);margin-top:14px;margin-bottom:50px;font-weight:400;}
-      .checkup-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(61,78,69,.24);}
-      .checkup-item{padding:26px 0;border-bottom:1px solid rgba(61,78,69,.24);}
-      .checkup-item:nth-child(odd){border-right:1px solid rgba(61,78,69,.24);padding-right:28px;}
+      .checkup-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(150,114,66,.24);}
+      .checkup-item{padding:26px 0;border-bottom:1px solid rgba(150,114,66,.24);}
+      .checkup-item:nth-child(odd){border-right:1px solid rgba(150,114,66,.24);padding-right:28px;}
       .checkup-item:nth-child(even){padding-left:28px;}
       .checkup-item .n{font-family:var(--sans);font-size:15px;letter-spacing:.3em;color:var(--text-mute);}
       .checkup-item .t{font-family:var(--serif);font-size:33px;color:var(--text-dark);margin-top:6px;line-height:1.02;}
-      .checkup-device{background-image:url('assets/checkup-device.png');background-size:contain;background-repeat:no-repeat;background-position:center bottom;margin:72px 22px 0 0;}
+      .checkup-device{background-image:url('assets/checkup-device.png');background-size:contain;background-repeat:no-repeat;background-position:center bottom;background-size:contain;margin:140px 30px 40px 0;}
     </style>
     <div class="checkup">
       <div class="checkup-env"></div>
@@ -2111,17 +2166,16 @@
           <div class="checkup-item"><div class="n">04</div><div class="t">Mente</div></div>
         </div>
       </div>
-      <div class="checkup-device"></div>
-    </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(0px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+          </div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="Academia · Vista" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/academia-02-c.jpg');"></div>
       <div class="hero-label above">Academia</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
       <img src="assets/technogym-logo.png" alt="Technogym" style="position:absolute;right:28px;bottom:120px;height:88px;width:auto;">
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section>
 
   <!-- 16c — TECHNOGYM CHECKUP -->
@@ -2132,9 +2186,19 @@
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/piscina-02-c.webp');"></div>
       <div class="hero-label above">Piscina</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(-360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
+</section>
+
+  <!-- NOVO 14 Piscina · Vista -->
+  <section class="bg-cream" data-screen-label="14 Piscina · Vista" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="hero bleed-x">
+      <div class="hero-img" style="background-image:url('assets/piscina-05-c.webp');"></div>
+      <div class="hero-label above">Piscina</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
+    </div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section>
 
 <!-- 11b — PISCINA (jardim / paisagismo) -->
@@ -2142,9 +2206,9 @@
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/piscina-03-c.webp');"></div>
       <div class="hero-label above">Piscina</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(-360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section>
 
   <!-- 15 — CHURRASQUEIRA (1/3) -->
@@ -2160,23 +2224,23 @@
     <div class="hero" id="slide-sauna">
       <div class="hero-img" style="background-image:url('assets/sauna-vert-c.webp');"></div>
       <div class="hero-label above">Sauna</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(-180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="11 Piscina" data-om-id="e8910dbc:176" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="10">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/piscina-c.webp');"></div>
       <div class="hero-label above">Piscina</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(-360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="15 Área Gourmet Externa 1" data-om-id="e8910dbc:220" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="14">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/area-gourmet-1-c.webp');"></div>
       <div class="hero-label above">Área Gourmet Externa</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section>
 
   <!-- 17 — CHURRASQUEIRA (3/3) -->
@@ -2184,9 +2248,9 @@
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/gourmet-externo-c.webp');"></div>
       <div class="hero-label above">Área Gourmet Externa</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(-180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section>
 
   <!-- 12 — SAUNA -->
@@ -2194,65 +2258,85 @@
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/area-gourmet-externo-c.webp');"></div>
       <div class="hero-label above">Área Gourmet Externa</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(-360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="14 Horta Compartilhada" data-om-id="e8910dbc:209" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="13">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/praca-01-c.webp');"></div>
       <div class="hero-label above">Praça</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="13 Spa" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/spa-c.jpg');"></div>
       <div class="hero-label above">Spa</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(0px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
+</section>
+
+  <!-- NOVO 19 Spa · Ambiente -->
+  <section class="bg-cream" data-screen-label="19 Spa · Ambiente" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="hero bleed-x">
+      <div class="hero-img" style="background-image:url('assets/spa-02-c.webp');"></div>
+      <div class="hero-label above">Spa</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
+    </div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
+</section>
+
+  <!-- NOVO 19 Spa · Detalhe -->
+  <section class="bg-cream" data-screen-label="19 Spa · Detalhe" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="hero bleed-x">
+      <div class="hero-img" style="background-image:url('assets/spa-03-c.webp');"></div>
+      <div class="hero-label above">Spa</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
+    </div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="19 Quadra Poliesportiva" data-om-id="e8910dbc:265" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="18">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/quadra-c.webp');"></div>
       <div class="hero-label above">Quadra Poliesportiva</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
-</section><section class="bg-cream" data-screen-label="33 Quadra · Vista" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
-    <div class="hero bleed-x">
-      <div class="hero-img" style="background-image:url('assets/quadra-vista-c.webp');"></div>
-      <div class="hero-label above">Quadra &amp; Paisagismo</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
-    </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(0px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="26 Bosque" data-om-id="e8910dbc:343" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="25">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/circulacao-paisagismo-c.webp');"></div>
       <div class="hero-label above">Bosque</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(-360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
+</section><section class="bg-cream" data-screen-label="33 Quadra · Vista" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="hero bleed-x">
+      <div class="hero-img" style="background-image:url('assets/quadra-vista-c.webp');"></div>
+      <div class="hero-label above">Quadra &amp; Paisagismo</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
+    </div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="24 Playground" data-om-id="e8910dbc:321" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="23">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/playground-new-c.jpg');"></div>
       <div class="hero-label above">Playground</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
-</section><section class="bg-cream" data-screen-label="25 Terraço" data-om-id="e8910dbc:332" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="24">
-    <div class="hero bleed-x">
-      <div class="hero-img" style="background-image:url('assets/lounge-1-c.webp');"></div>
-      <div class="hero-label above">Terraço</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
-    </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="23 Brinquedoteca" data-om-id="e8910dbc:310" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="22">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/brinquedoteca-new-c.webp');"></div>
       <div class="hero-label above">Brinquedoteca</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(0px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
+</section><section class="bg-cream" data-screen-label="25 Terraço" data-om-id="e8910dbc:332" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="24">
+    <div class="hero bleed-x">
+      <div class="hero-img" style="background-image:url('assets/lounge-1-c.webp');"></div>
+      <div class="hero-label above">Terraço</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
+    </div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section>
 
   <!-- 13 — SPA -->
@@ -2275,37 +2359,47 @@
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/salao-festas-1-c.webp');"></div>
       <div class="hero-label above">Salão de Festas</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(0px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="22 Salão de Festas" data-om-id="e8910dbc:299" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="21">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/salao-festas-c.webp');"></div>
       <div class="hero-label above">Salão de Festas</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(-180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="25 Área Gourmet · Vista" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/espaco-gourmet-02-c.webp');"></div>
       <div class="hero-label above">Área Gourmet</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(0px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="21 Área Gourmet" data-om-id="e8910dbc:287" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="20">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/espaco-gourmet-01-c.webp');"></div>
       <div class="hero-label above">Área Gourmet</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(-360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
+</section>
+
+  <!-- NOVO 26 Sala de Reunião -->
+  <section class="bg-cream" data-screen-label="26 Sala de Reunião" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="hero bleed-x">
+      <div class="hero-img" style="background-image:url('assets/reuniao-c.webp');"></div>
+      <div class="hero-label above">Sala de Reunião</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
+    </div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section><section class="bg-cream" data-screen-label="20 Coworking" data-om-id="e8910dbc:276" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="19">
     <div class="hero bleed-x">
       <div class="hero-img" style="background-image:url('assets/coworking-c.webp');"></div>
       <div class="hero-label above">Coworking</div>
-      <div class="framed-cap">Perspectiva ilustrada</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section>
 
   <!-- 19 — ÁREA GOURMET -->
@@ -2342,7 +2436,7 @@
       <div class="divider-sub" data-om-id="e8910dbc:359">Duas tipologias. Três suítes em cada.</div>
     </div>
     <div class="footer-mark on-dark" data-om-id="e8910dbc:360">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(-180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 15 — PAVIMENTO TIPO -->
   <section class="bg-cream" data-screen-label="28 Pavimento-tipo" data-om-id="e8910dbc:362" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="27">
@@ -2371,7 +2465,7 @@
       </div>
     </div>
     <div class="footer-mark" data-om-id="e8910dbc:382">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(0px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 29 — FINAL 01 (Tipo 01) -->
   <section class="bg-cream" data-screen-label="29 Final 01" data-om-id="e8910dbc:384" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="28">
@@ -2388,7 +2482,7 @@
       </div>
     </div>
     <div class="footer-mark" data-om-id="e8910dbc:395">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 30 — FINAL 02 (Tipo 02) -->
   <section class="bg-cream" data-screen-label="30 Final 02" data-om-id="e8910dbc:397" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="29">
@@ -2405,7 +2499,7 @@
       </div>
     </div>
     <div class="footer-mark" data-om-id="e8910dbc:408">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 31 — FINAL 03 (Tipo 01) -->
   <section class="bg-cream" data-screen-label="31 Final 03" data-om-id="e8910dbc:410" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="30">
@@ -2422,7 +2516,7 @@
       </div>
     </div>
     <div class="footer-mark" data-om-id="e8910dbc:421">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(-360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 18 — DIVIDER 04 A VISTA -->
   
@@ -2451,7 +2545,7 @@
         </figure>
       </div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: rotate(-30deg) translateX(0px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
 </section>
 
   <!-- 20 — A OPORTUNIDADE -->
@@ -2460,13 +2554,13 @@
   <style>
   .difs{height:100%;display:flex;flex-direction:column;padding:92px 120px 84px;box-sizing:border-box;}
   .difs-head{margin-bottom:52px;}
-  .difs-eyebrow{font-family:var(--sans);font-size:22px;letter-spacing:.42em;text-transform:uppercase;color:#8a7a54;font-weight:500;margin-bottom:14px;}
+  .difs-eyebrow{font-family:var(--sans);font-size:22px;letter-spacing:.42em;text-transform:uppercase;color:#C8A06B;font-weight:500;margin-bottom:14px;}
   .difs-title{font-family:var(--serif);font-size:78px;line-height:1;color:var(--text-dark);font-weight:300;}
   .difs-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:56px;}
   .dif-col{display:flex;flex-direction:column;}
-  .dif-col-head{font-family:var(--sans);font-size:25px;letter-spacing:.02em;font-weight:600;color:#3D4E45;padding-bottom:16px;margin-bottom:30px;border-bottom:2px solid rgba(184,153,104,.55);}
+  .dif-col-head{font-family:var(--sans);font-size:25px;letter-spacing:.02em;font-weight:600;color:#C8A06B;padding-bottom:16px;margin-bottom:30px;border-bottom:2px solid rgba(184,153,104,.55);}
   .dif-item{display:flex;gap:20px;align-items:center;margin-bottom:28px;}
-  .dif-ico{flex:0 0 auto;width:56px;height:56px;border:1.5px solid rgba(61,78,69,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#3D4E45;}
+  .dif-ico{flex:0 0 auto;width:56px;height:56px;border:1.5px solid rgba(150,114,66,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#C8A06B;}
   .dif-ico svg{width:30px;height:30px;}
   .dif-text{font-family:var(--sans);font-size:24px;line-height:1.28;color:var(--text-dark);}
   </style>
@@ -2477,7 +2571,7 @@
       <div class="divider-sub">Tecnologia, sustentabilidade e infraestrutura<br>que valorizam o seu dia a dia.</div>
     </div>
     <div class="footer-mark on-dark">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(-180px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <style>
   .difs-grid.two{grid-template-columns:repeat(2,1fr);gap:48px 110px;}
@@ -2488,7 +2582,7 @@
   .concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px 96px;margin-top:70px;}
   .concept-item{border-top:1px solid rgba(221,208,180,.32);padding-top:24px;}
   .concept-item h4{font-family:var(--serif);font-size:36px;font-weight:400;color:var(--ouro);margin:0 0 12px;}
-  .concept-item p{font-family:var(--sans);font-size:23px;line-height:1.4;color:rgba(242,236,216,.82);margin:0;}
+  .concept-item p{font-family:var(--sans);font-size:23px;line-height:1.4;color:rgba(74,66,56,.82);margin:0;}
   </style>
   <!-- 20c — DIFERENCIAIS (grid) -->
   <section class="bg-cream" data-screen-label="Diferenciais" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
@@ -2522,7 +2616,7 @@
       </div>
     </div>
     <div class="footer-mark">DOM MANUEL</div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(0px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
 
   <!-- 21 — ENCERRAMENTO · LOGO DOM (aguardando logo do usuário) -->
   <section class="bg-dark" data-screen-label="36 Encerramento" data-om-id="e8910dbc:479" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="35" data-deck-last-visible="">
@@ -2534,9 +2628,46 @@
         <div class="closer-tile side"><img src="assets/logo-gomes-sodre.png" alt="Gomes Sodré" style="max-height:84px;"></div>
       </div>
     </div>
-  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: rotate(-30deg) translateX(-360px);">PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO · </div></div></section>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
+
+  
 
 </deck-stage>
+
+  <!-- Slides OCULTOS (fora do deck) -->
+  
+
+  <!-- NOVO 29 Mezanino -->
+  <section style="display:none;" class="bg-cream" data-screen-label="29 Mezanino" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="hero bleed-x">
+      <div class="hero-img" style="background-image:url('assets/mezanino-c.webp');"></div>
+      <div class="hero-label above">Mezanino</div>
+      <div class="framed-cap">Perspectiva meramente ilustrativa</div>
+    </div>
+  <div class="wm" aria-hidden="true"><div class="wm-band wm-photo" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div>
+</section>
+  <!-- NOVO 29 Planta Humanizada · Mezanino -->
+  <section style="display:none;" class="bg-cream" data-screen-label="29 Planta Humanizada · Mezanino" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="planta">
+      <div class="planta-head"><div><div class="split-eyebrow" style="margin-bottom:14px;">Planta Humanizada — Mezanino</div></div></div>
+      <div class="planta-canvas">
+        <div class="planta-art"><img src="assets/humanizada-mezanino-c.webp" alt="Planta Humanizada — Mezanino" style="max-width:92%;max-height:78%;object-fit:contain;"></div>
+      </div>
+    </div>
+    <div class="footer-mark">DOM MANUEL</div>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
+
+  <!-- NOVO 29 Planta Humanizada · Térreo -->
+  <section style="display:none;" class="bg-cream" data-screen-label="29 Planta Humanizada · Térreo" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text">
+    <div class="planta">
+      <div class="planta-head"><div><div class="split-eyebrow" style="margin-bottom:14px;">Planta Humanizada — Térreo</div></div></div>
+      <div class="planta-canvas">
+        <div class="planta-art"><img src="assets/humanizada-terreo-c.webp" alt="Planta Humanizada — Térreo" style="max-width:92%;max-height:78%;object-fit:contain;"></div>
+      </div>
+    </div>
+    <div class="footer-mark">DOM MANUEL</div>
+  <div class="wm" aria-hidden="true"><div class="wm-band" style="transform: translateX(-800px) rotate(-30deg);">PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · PRÉVIA CONFIDENCIAL · </div></div></section>
+
 
 <script src="deck-stage.js"></script>
 <script>
@@ -2544,7 +2675,7 @@
   function addWM(){
     var secs = document.querySelectorAll('deck-stage > section');
     if(!secs.length){ return setTimeout(addWM, 200); }
-    var phrase = 'PRÉVIA CONFIDENCIAL — NÃO APROVADO — USO INTERNO';
+    var phrase = 'PRÉVIA CONFIDENCIAL';
     var unit = phrase + '\u2003·\u2003';
     var bandText = unit.repeat(5);
     secs.forEach(function(s, idx){
@@ -2559,8 +2690,7 @@
         band.classList.add('wm-photo');
       }
       // desloca a frase ao longo da faixa, variando o trecho central por slide
-      var off = ((idx % 5) - 2) * 180;
-      band.style.transform = 'rotate(-30deg) translateX(' + off + 'px)';
+            band.style.transform = 'translateX(-800px) rotate(-30deg)';
       band.textContent = bandText;
       wm.appendChild(band);
       s.appendChild(wm);
@@ -2570,14 +2700,244 @@
   else document.addEventListener('DOMContentLoaded', addWM);
 })();
 </script>
-<template id="__bundler_thumbnail" data-bg-color="#3D4E45">
+<template id="__bundler_thumbnail" data-bg-color="#C8A06B">
   <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-    <rect width="1200" height="800" fill="#3D4E45"/>
-    <text x="600" y="430" text-anchor="middle" font-family="Georgia, serif" font-size="190" font-weight="300" letter-spacing="14" fill="#DDD0B4">DM</text>
-    <rect x="500" y="500" width="200" height="2" fill="#DDD0B4" opacity="0.6"/>
-    <text x="600" y="560" text-anchor="middle" font-family="Helvetica, sans-serif" font-size="34" letter-spacing="20" fill="#DDD0B4">DOM MANUEL</text>
+    <rect width="1200" height="800" fill="#C8A06B"/>
+    <text x="600" y="430" text-anchor="middle" font-family="Georgia, serif" font-size="190" font-weight="300" letter-spacing="14" fill="#C8A06B">DM</text>
+    <rect x="500" y="500" width="200" height="2" fill="#C8A06B" opacity="0.6"/>
+    <text x="600" y="560" text-anchor="middle" font-family="Helvetica, sans-serif" font-size="34" letter-spacing="20" fill="#C8A06B">DOM MANUEL</text>
   </svg>
 </template>
 <script src="book-zoom.js"></script>
+
+
+
+
+
+<style>
+  /* ===== Widget Orientação Solar & Ventos v3 ===== */
+  .sunwind{position:absolute;left:64px;bottom:52px;width:330px;z-index:20;font-family:var(--sans);}
+  .sunwind .sw-drag{cursor:grab;}
+  .sunwind .sw-drag:active{cursor:grabbing;}
+  .sunwind .sw-head{font-size:12px;letter-spacing:.30em;text-transform:uppercase;color:#C8A06B;font-weight:500;margin-bottom:2px;}
+  .sunwind .sw-sub{font-size:10.5px;letter-spacing:.14em;color:rgba(74,66,56,.62);font-weight:300;margin-bottom:6px;}
+  .sunwind svg.sw-rose{width:100%;height:auto;display:block;}
+  .sunwind .sw-ctl{display:flex;align-items:center;gap:10px;margin-top:4px;}
+  .sunwind input[type=range]{flex:1;accent-color:#C8A06B;height:3px;cursor:pointer;}
+  .sunwind .sw-mes{font-size:12px;letter-spacing:.22em;color:#4A4238;font-weight:500;width:40px;text-align:right;}
+  .sunwind .sw-az{font-size:10px;letter-spacing:.10em;color:rgba(74,66,56,.55);margin-top:2px;text-align:right;}
+  .sunwind .sw-size{position:absolute;right:-6px;bottom:-6px;width:16px;height:16px;border-radius:3px;background:#C8A06B;opacity:.35;cursor:nwse-resize;}
+  .sunwind:hover .sw-size{opacity:.8;}
+  /* camada tela cheia (slide 50) */
+  .sunwind-layer{position:absolute;inset:0;z-index:12;pointer-events:none;overflow:hidden;}
+  .sunwind-layer svg{width:100%;height:100%;display:block;}
+  .sunwind-compass{position:absolute;top:26px;left:50%;transform:translateX(-50%);width:190px;z-index:22;font-family:var(--sans);text-align:center;}
+  .sunwind-compass svg{width:130px;height:auto;display:inline-block;}
+  .sunwind-compass .sw-ctl{display:flex;align-items:center;gap:8px;margin-top:2px;pointer-events:auto;}
+  .sunwind-compass input[type=range]{flex:1;accent-color:#C8A06B;height:3px;cursor:pointer;}
+  .sunwind-compass .sw-mes{font-size:11px;letter-spacing:.2em;color:#4A4238;font-weight:500;width:34px;text-align:right;}
+  .sunwind-compass .sw-az{font-size:9.5px;letter-spacing:.08em;color:rgba(74,66,56,.55);margin-top:1px;}
+</style>
+<script>
+(function(){
+  var ROT=135, AZUL='#4E86AC', NS='http://www.w3.org/2000/svg', KEY='dm-sunwind-v1';
+  var DECL=[-21.1,-13.3,-2.4,9.4,18.8,23.1,21.2,13.5,2.2,-9.6,-18.9,-23.1];
+  var MES=['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'];
+  var saved={}; try{saved=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function persist(k,o){saved[k]=Object.assign(saved[k]||{},o);try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(e){}}
+  function pt(cx,cy,r,th){var t=th*Math.PI/180;return [cx+r*Math.sin(t), cy-r*Math.cos(t)];}
+  function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+
+  function rose(svg,R){
+    el('circle',{cx:100,cy:100,r:R,fill:'rgba(244,237,225,.65)',stroke:'#C8A06B','stroke-width':.9,'stroke-opacity':.6},svg);
+    el('circle',{cx:100,cy:100,r:R*.79,fill:'none',stroke:'#C8A06B','stroke-width':.5,'stroke-opacity':.3},svg);
+    [['N',0],['NE',45],['L',90],['SE',135],['S',180],['SO',225],['O',270],['NO',315]].forEach(function(d){
+      var th=d[1]+ROT, card=(d[0].length===1);
+      var p1=pt(100,100,R,th), p2=pt(100,100,card?R-9:R-5,th);
+      el('line',{x1:p1[0],y1:p1[1],x2:p2[0],y2:p2[1],stroke:'#C8A06B','stroke-width':card?1.6:.8,'stroke-opacity':card?.9:.5},svg);
+      var lp=pt(100,100,card?R-23:R-15,th);
+      el('text',{x:lp[0],y:lp[1]+4,'text-anchor':'middle','font-size':card?13:7,fill:card?'#8A6A3E':'rgba(138,106,62,.65)','font-weight':card?600:400,'font-family':'Montserrat,sans-serif'},svg).textContent=d[0];
+    });
+    var star='';
+    for(var i=0;i<8;i++){var a=i*45+ROT,r1=(i%2===0)?R*.30:R*.10,p=pt(100,100,r1,a);star+=(i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1);}
+    el('path',{d:star+'Z',fill:'#C8A06B','fill-opacity':.85,stroke:'#8A6A3E','stroke-width':.5},svg);
+  }
+
+  // ========= SLIDE 50: camada tela-cheia =========
+  function buildFull(sec,key){
+    if(sec.querySelector('.sunwind-layer'))return;
+    var W=1600,H=900,CX=800,CY=460,L=1150;
+    var layer=document.createElement('div');layer.className='sunwind-layer';
+    var svg=el('svg',{viewBox:'0 0 '+W+' '+H,preserveAspectRatio:'xMidYMid slice'});layer.appendChild(svg);
+    function P(th,r){var p=pt(0,0,r,th);return [CX+p[0],CY+p[1]];}
+    function lerp(a,b,t){return [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t];}
+
+    // ===== faixa solar dinâmica: bem larga no lado do sol, afunila no oposto + sombra =====
+    var dJ=23.1;
+    var Rj=P(90-dJ+ROT,L), Rd=P(90+dJ+ROT,L);
+    var Sj=P(270+dJ+ROT,L), Sd=P(270-dJ+ROT,L);
+    var Re=P(225,L), Se=P(45,L);
+    // referências anuais fixas (jun/dez)
+    el('line',{x1:Rj[0],y1:Rj[1],x2:Sj[0],y2:Sj[1],stroke:'#C8742B','stroke-width':1.2,'stroke-opacity':.25,'stroke-dasharray':'8 10'},svg);
+    el('line',{x1:Rd[0],y1:Rd[1],x2:Sd[0],y2:Sd[1],stroke:'#C8742B','stroke-width':1.2,'stroke-opacity':.25,'stroke-dasharray':'8 10'},svg);
+    [[90-dJ+ROT,'JUN'],[90+dJ+ROT,'DEZ']].forEach(function(x){
+      var lp=P(x[0],520);
+      el('text',{x:lp[0],y:lp[1],'font-size':13,fill:'rgba(176,122,42,.8)','letter-spacing':'.2em','text-anchor':'middle','font-family':'Montserrat,sans-serif'},svg).textContent=x[1];
+    });
+    el('line',{x1:Re[0],y1:Re[1],x2:Se[0],y2:Se[1],stroke:'#C8742B','stroke-width':1.5,'stroke-opacity':.30},svg);
+    var lr=P(225,560), lp2=P(45,560);
+    el('text',{x:lr[0],y:lr[1],'font-size':19,fill:'#B07A2A','letter-spacing':'.32em','text-anchor':'middle','font-weight':600,'font-family':'Montserrat,sans-serif'},svg).textContent='NASCENTE';
+    el('text',{x:lp2[0],y:lp2[1],'font-size':19,fill:'#B07A2A','letter-spacing':'.32em','text-anchor':'middle','font-weight':600,'font-family':'Montserrat,sans-serif'},svg).textContent='POENTE';
+
+    // ===== vento: fluxo PARALELO cobrindo o slide; direção via slider (N..L) =====
+    var wind=el('g',{},svg);   // construído para NE; rotação do grupo muda a direção
+    var NSTR=34, SPAN=1080, HL=980;
+    for(var i=0;i<NSTR;i++){
+      var u=(i/(NSTR-1))*2-1;
+      var off=u*SPAN+Math.sin(i*3.7)*26;
+      var op=.14+.16*(1-Math.abs(u)*.5)+Math.sin(i*5.1)*.03;
+      var A=[CX+off,CY+HL], B=[CX+off,CY-HL];   // heading "para cima" = vindo de NE
+      var d='M'+A[0].toFixed(0)+','+A[1].toFixed(0)+' L'+B[0].toFixed(0)+','+B[1].toFixed(0);
+      el('path',{d:d,fill:'none',stroke:AZUL,'stroke-width':.7,'stroke-opacity':op*.10,'stroke-dasharray':'2.5 12'},wind);
+      var n=4+(i%2);
+      for(var j2=0;j2<n;j2++){
+        var arrow=el('path',{d:'M-8,0 L5,0 M5,0 L1,-3.6 M5,0 L1,3.6',fill:'none',stroke:AZUL,'stroke-width':2,'stroke-linecap':'round','stroke-linejoin':'round','stroke-opacity':op},wind);
+        var dur=(5.4+(i%3)*.35).toFixed(2);
+        el('animateMotion',{path:d,dur:dur+'s',repeatCount:'indefinite',rotate:'auto',begin:(-(j2*(+dur))/n).toFixed(2)+'s'},arrow);
+      }
+    }
+    function setWind(az){ // az: 0=N .. 90=L (origem); construído p/ 45
+      wind.setAttribute('transform','rotate('+(az-45)+' '+CX+' '+CY+')');
+    }
+
+    // sol (disco no eixo nascente-poente, sem faixa)
+    var A0=P(225,540), B0=P(45,540);
+    var sunGlow=el('circle',{r:34,fill:'#E8B94B','fill-opacity':.16},svg);
+    var sun=el('circle',{r:16,fill:'#E8B94B',stroke:'#FAF6F0','stroke-width':3},svg);
+    el('animate',{attributeName:'fill-opacity',values:'1;.75;1',dur:'2.6s',repeatCount:'indefinite'},sun);
+    function place(t){
+      var x=A0[0]+(B0[0]-A0[0])*t, y=A0[1]+(B0[1]-A0[1])*t;
+      sun.setAttribute('cx',x);sun.setAttribute('cy',y);
+      sunGlow.setAttribute('cx',x);sunGlow.setAttribute('cy',y);
+      persist(key,{s:t});
+    }
+
+    // bússola + sliders (sol e vento)
+    var comp=document.createElement('div');comp.className='sunwind-compass';
+    var rsvg=el('svg',{viewBox:'0 0 200 200'});comp.appendChild(rsvg);rose(rsvg,92);
+    var ctl=document.createElement('div');ctl.className='sw-ctl';
+    ctl.innerHTML='<span class="sw-mes" style="width:auto;font-size:9px;">NASC.</span><input type="range" min="0" max="100" step="1" value="20"><span class="sw-mes" style="width:auto;font-size:9px;">POEN.</span>';
+    var ctlW=document.createElement('div');ctlW.className='sw-ctl';
+    ctlW.innerHTML='<span class="sw-mes" style="width:auto;font-size:9px;color:#4E86AC;">N</span><input type="range" min="40" max="80" step="1" value="67" style="accent-color:#4E86AC;"><span class="sw-mes" style="width:auto;font-size:9px;color:#4E86AC;">L</span>';
+    var az=document.createElement('div');az.className='sw-az';
+    az.textContent='nascente 67°–113° · poente 247°–293°';
+    comp.appendChild(ctl);comp.appendChild(ctlW);comp.appendChild(az);
+    var rng=ctl.querySelector('input'), rngW=ctlW.querySelector('input');
+    rng.addEventListener('input',function(){place(+this.value/100);});
+    rngW.addEventListener('input',function(){setWind(+this.value);persist(key,{w:+this.value});});
+    var st=saved[key]||{};
+    if(st.s!=null)rng.value=Math.round(st.s*100);
+    if(st.w!=null && st.w>=40 && st.w<=80)rngW.value=st.w;
+    place(+rng.value/100);
+    setWind(+rngW.value);
+
+    sec.appendChild(layer);sec.appendChild(comp);
+  }
+
+  // ========= FINAIS 01-03: widget compacto (arrastável/redimensionável) =========
+  function build(sec,key){
+    if(sec.querySelector('.sunwind'))return;
+    var box=document.createElement('div');box.className='sunwind';
+    box.innerHTML='<div class="sw-drag"><div class="sw-head">Orientação Solar &amp; Ventos</div>'+
+                  '<div class="sw-sub">Alísios E–NE · São Luís · 2,5° Sul</div></div>';
+    var svg=el('svg',{viewBox:'0 0 200 200','class':'sw-rose'});box.appendChild(svg);
+    var defs=el('defs',{},svg);
+    var gid='swB'+Math.random().toString(36).slice(2,7);
+    var g1=el('linearGradient',{id:gid,x1:'0',y1:'0',x2:'1',y2:'0'},defs);
+    el('stop',{offset:'0','stop-color':'#E8B94B','stop-opacity':'.85'},g1);
+    el('stop',{offset:'1','stop-color':'#C8742B','stop-opacity':'.55'},g1);
+    rose(svg,92);
+    var band=el('line',{stroke:'url(#'+gid+')','stroke-width':9,'stroke-linecap':'round','stroke-opacity':.6},svg);
+    var lblN=el('text',{'font-size':5.5,fill:'#B07A2A','letter-spacing':'.18em','text-anchor':'middle','font-family':'Montserrat,sans-serif'},svg);lblN.textContent='NASCENTE';
+    var lblP=el('text',{'font-size':5.5,fill:'#B07A2A','letter-spacing':'.18em','text-anchor':'middle','font-family':'Montserrat,sans-serif'},svg);lblP.textContent='POENTE';
+    var sunGlow=el('circle',{r:10,fill:'#E8B94B','fill-opacity':.18},svg);
+    var sun=el('circle',{r:5.5,fill:'#E8B94B',stroke:'#FAF6F0','stroke-width':1},svg);
+    el('animate',{attributeName:'fill-opacity',values:'1;.75;1',dur:'2.6s',repeatCount:'indefinite'},sun);
+    var mo=el('animateMotion',{dur:'9s',repeatCount:'indefinite',keyPoints:'0;1;0',keyTimes:'0;.5;1',calcMode:'linear'},sun);
+    var mo2=el('animateMotion',{dur:'9s',repeatCount:'indefinite',keyPoints:'0;1;0',keyTimes:'0;.5;1',calcMode:'linear'},sunGlow);
+    var wind=el('g',{},svg);
+    [{ent:152,n:2,op:.35},{ent:166,n:3,op:.6},{ent:180,n:5,op:.9},{ent:194,n:3,op:.6},{ent:208,n:2,op:.35}].forEach(function(s,si){
+      var A=pt(100,100,90,s.ent),B=pt(100,100,90,s.ent+180);
+      var mid=[(A[0]+B[0])/2,(A[1]+B[1])/2],perp=pt(0,0,14,s.ent+90);
+      var C=[mid[0]+perp[0],mid[1]+perp[1]];
+      var d='M'+A[0].toFixed(1)+','+A[1].toFixed(1)+' Q'+C[0].toFixed(1)+','+C[1].toFixed(1)+' '+B[0].toFixed(1)+','+B[1].toFixed(1);
+      el('path',{d:d,fill:'none',stroke:AZUL,'stroke-width':.5,'stroke-opacity':s.op*.2,'stroke-dasharray':'1.5 5'},wind);
+      for(var j=0;j<s.n;j++){
+        var arrow=el('path',{d:'M-7,0 L4,0 M4,0 L0.5,-3 M4,0 L0.5,3',fill:'none',stroke:AZUL,'stroke-width':1.6,'stroke-linecap':'round','stroke-linejoin':'round','stroke-opacity':s.op},wind);
+        var dur=(5.5+si%3*1.2).toFixed(1);
+        el('animateMotion',{path:d,dur:dur+'s',repeatCount:'indefinite',rotate:'auto',begin:(-(j*(+dur))/s.n).toFixed(2)+'s'},arrow);
+      }
+    });
+    var ctl=document.createElement('div');ctl.className='sw-ctl';
+    ctl.innerHTML='<input type="range" min="0" max="11" step="1" value="6"><span class="sw-mes">JUL</span>';
+    var az=document.createElement('div');az.className='sw-az';
+    box.appendChild(ctl);box.appendChild(az);
+    var handle=document.createElement('div');handle.className='sw-size';box.appendChild(handle);
+    var rng=ctl.querySelector('input'), mes=ctl.querySelector('.sw-mes');
+    function update(m){
+      var dd=DECL[m];
+      var thR=90-dd+ROT, thS=270+dd+ROT;
+      var R=pt(100,100,86,thR),S=pt(100,100,86,thS);
+      band.setAttribute('x1',R[0]);band.setAttribute('y1',R[1]);
+      band.setAttribute('x2',S[0]);band.setAttribute('y2',S[1]);
+      var pd='M'+R[0].toFixed(1)+','+R[1].toFixed(1)+' L'+S[0].toFixed(1)+','+S[1].toFixed(1);
+      mo.setAttribute('path',pd);mo2.setAttribute('path',pd);
+      var lr=pt(100,100,97,thR),lp2=pt(100,100,97,thS);
+      lblN.setAttribute('x',lr[0]);lblN.setAttribute('y',lr[1]+2);
+      lblP.setAttribute('x',lp2[0]);lblP.setAttribute('y',lp2[1]+2);
+      mes.textContent=MES[m];
+      az.textContent='nascente '+((90-dd+360)%360).toFixed(0)+'° · poente '+((270+dd)%360).toFixed(0)+'°';
+      persist(key,{m:m});
+    }
+    rng.addEventListener('input',function(){update(+this.value);});
+    var st=saved[key]||{};
+    if(st.w)box.style.width=st.w+'px';
+    if(st.x!=null){box.style.left=st.x+'px';box.style.top=st.y+'px';box.style.bottom='auto';}
+    if(st.m!=null)rng.value=st.m;
+    update(+rng.value);
+    function scale(){var r=sec.getBoundingClientRect();return r.width/sec.offsetWidth||1;}
+    box.addEventListener('pointerdown',function(ev){
+      if(ev.target===rng||ev.target===handle)return;
+      ev.preventDefault();
+      var sc=scale(),sx=ev.clientX,sy=ev.clientY,ox=box.offsetLeft,oy=box.offsetTop;
+      box.setPointerCapture(ev.pointerId);
+      function mv(e){box.style.left=(ox+(e.clientX-sx)/sc)+'px';box.style.top=(oy+(e.clientY-sy)/sc)+'px';box.style.bottom='auto';}
+      function up(){box.removeEventListener('pointermove',mv);box.removeEventListener('pointerup',up);persist(key,{x:box.offsetLeft,y:box.offsetTop});}
+      box.addEventListener('pointermove',mv);box.addEventListener('pointerup',up);
+    });
+    handle.addEventListener('pointerdown',function(ev){
+      ev.preventDefault();ev.stopPropagation();
+      var sc=scale(),sx=ev.clientX,w0=box.offsetWidth;
+      handle.setPointerCapture(ev.pointerId);
+      function mv(e){box.style.width=Math.min(760,Math.max(220,w0+(e.clientX-sx)/sc))+'px';}
+      function up(){handle.removeEventListener('pointermove',mv);handle.removeEventListener('pointerup',up);persist(key,{w:box.offsetWidth});}
+      handle.addEventListener('pointermove',mv);handle.addEventListener('pointerup',up);
+    });
+    sec.appendChild(box);
+  }
+
+  function init(){
+    var secs=document.querySelectorAll('deck-stage > section');
+    if(!secs.length)return setTimeout(init,300);
+    secs.forEach(function(s){
+      var lab=s.getAttribute('data-screen-label')||'';
+      if(/Pavimento-tipo/.test(lab)) buildFull(s,'Pavimento-tipo');
+      else { var m=lab.match(/Final 0\d/); if(m) build(s,m[0]); }
+    });
+  }
+  if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+
 </body>
 </html>
