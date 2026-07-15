@@ -110,6 +110,30 @@ def media_rm2_fmt(tab):
     m = tv / ta if ta else 0
     return "R$ " + f"{m:,.0f}".replace(",", ".") + "/m²"
 
+VAGAS = {}  # apto -> (vpad, vprem), lido da T0 (congelada)
+def ler_vagas():
+    global VAGAS
+    if VAGAS: return VAGAS
+    wb = load_workbook(REGUA, data_only=True)
+    ws = wb["T0 (congelada)"]
+    for row in range(6, ws.max_row + 1):
+        ap = ws.cell(row=row, column=2).value
+        if ap is None: continue
+        aps = str(ap).strip()
+        if not aps.isdigit(): continue
+        vpad = ws.cell(row=row, column=13).value
+        vprem = ws.cell(row=row, column=14).value
+        VAGAS[aps] = (int(vpad or 0), int(vprem or 0))
+    return VAGAS
+
+def vagas_str(apto):
+    vp, vpr = ler_vagas().get(str(apto), (0, 0))
+    tot = vp + vpr
+    if tot == 0: return ""
+    if vpr > 0:
+        return f"{tot} vagas · {vpr} premium"
+    return f"{tot} vaga" + ("s" if tot != 1 else "")
+
 # ───────────────────────── LEITURA ─────────────────────────
 def ler_painel():
     wb = load_workbook(PAINEL, data_only=True)
@@ -190,9 +214,11 @@ def espelho_html(status_by_apto, idx):
             if r.get("rm2"):
                 preco_html = (f'<span class="erm2 pr-rm2">R$ {esc(rm2_fmt(r["rm2"]))}</span>'
                               f'<span class="erm2 eval pr-ticket">{esc(fmt0(r["valor"]))}</span>')
+            vs = vagas_str(apto)
+            vagas_html = f'<span class="erm2 evag pr-vagas">{esc(vs)}</span>' if vs else ""
             cells.append(
                 f'<td class="ecell {cls}"><span class="eapto">{apto}</span>'
-                f'<span class="estat">{rotulo}</span>{preco_html}</td>'
+                f'<span class="estat">{rotulo}</span>{preco_html}{vagas_html}</td>'
             )
         rows_html.append(f'<tr><th class="eand">{andar}º</th>{"".join(cells)}</tr>')
     head = ('<tr><th></th><th>Final 01<small>lado lagoa</small></th>'
@@ -215,8 +241,10 @@ def folha_espelho(status_by_apto, idx, vigente, atual, regua_versao, media):
             if r.get("rm2"):
                 pm = (f'<span class="fm pr-rm2">R$ {esc(rm2_fmt(r["rm2"]))}</span>'
                       f'<span class="fm fmv pr-ticket">{esc(fmt0(r["valor"]))}</span>')
+            vs = vagas_str(apto)
+            pv = f'<span class="fm pr-vagas">{esc(vs)}</span>' if vs else ""
             tds.append(f'<td class="fcell {c}"><span class="fa">{apto}</span>'
-                       f'<span class="fs">{rot}</span>{pm}</td>')
+                       f'<span class="fs">{rot}</span>{pm}{pv}</td>')
         rows.append(f'<tr><td class="fand">{andar}º</td>{"".join(tds)}</tr>')
     head = ('<tr><th></th><th>Final 01<small>lado lagoa</small></th>'
             '<th>Final 02<small>miolo</small></th><th>Final 03<small>lado mar</small></th></tr>')
@@ -374,9 +402,11 @@ tr.st-sold .pill{{color:var(--sd-tx);background:var(--sd-bg);border-color:var(--
 .printbtn{{background:transparent;border:1px solid var(--line);color:var(--muted);padding:7px 14px;border-radius:8px;font-size:12px;cursor:pointer;float:right}}
 .toggleprice{{background:var(--panel);border:1px solid var(--line);color:var(--gold);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;margin-bottom:14px}}
 .toggleprice.on{{background:var(--gold);color:#1a1710;border-color:var(--gold)}}
-.ecell .pr-rm2,.ecell .pr-ticket,.fcell .pr-rm2,.fcell .pr-ticket{{display:none}}
+.ecell .pr-rm2,.ecell .pr-ticket,.ecell .pr-vagas,.fcell .pr-rm2,.fcell .pr-ticket,.fcell .pr-vagas{{display:none}}
 body.show-rm2 .ecell .pr-rm2,body.show-rm2 .fcell .pr-rm2{{display:block}}
 body.show-ticket .ecell .pr-ticket,body.show-ticket .fcell .pr-ticket{{display:block}}
+body.show-vagas .ecell .pr-vagas,body.show-vagas .fcell .pr-vagas{{display:block}}
+.ecell .evag{{opacity:.85;font-weight:500}}
 .ecell .eval{{font-size:10px;opacity:.8}} .fcell .fmv{{font-size:7px;margin-top:0}}
 .soonbox{{background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:40px;text-align:center;color:var(--muted);font-size:14px}}
 footer{{color:var(--line);font-size:11px;text-align:center;margin-top:40px}}
@@ -501,6 +531,7 @@ table.ftbl tr{{page-break-inside:avoid}}
     <p class="vd">Disponibilidade das 45 unidades · tabela vigente ({esc(vigente)}) · preço médio {esc(media)}.</p>
     <button class="toggleprice" id="btn-rm2" onclick="togglePr('rm2')">R$/m²</button>
     <button class="toggleprice" id="btn-ticket" onclick="togglePr('ticket')">Ticket</button>
+    <button class="toggleprice" id="btn-vagas" onclick="togglePr('vagas')">Vagas</button>
     <div class="legend">{legenda}</div>
     {esp}
   </section>
@@ -554,7 +585,7 @@ function present(id){{
   else window.open(f.src,'_blank');
 }}
 function togglePr(which){{
-  var cls=which==='rm2'?'show-rm2':'show-ticket';
+  var cls='show-'+which;
   var on=document.body.classList.toggle(cls);
   document.getElementById('btn-'+which).classList.toggle('on',on);
 }}
