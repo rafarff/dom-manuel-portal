@@ -110,7 +110,7 @@ def media_rm2_fmt(tab):
     m = tv / ta if ta else 0
     return "R$ " + f"{m:,.0f}".replace(",", ".") + "/m²"
 
-VAGAS = {}  # apto -> (vpad, vprem), lido da T0 (congelada)
+VAGAS = {}  # apto -> (qtd, numeração RI), lido da T0 (congelada) cols M/O
 def ler_vagas():
     global VAGAS
     if VAGAS: return VAGAS
@@ -121,18 +121,18 @@ def ler_vagas():
         if ap is None: continue
         aps = str(ap).strip()
         if not aps.isdigit(): continue
-        vpad = ws.cell(row=row, column=13).value
-        vprem = ws.cell(row=row, column=14).value
-        VAGAS[aps] = (int(vpad or 0), int(vprem or 0))
+        qtd = int(ws.cell(row=row, column=13).value or 0)
+        nums = str(ws.cell(row=row, column=15).value or "").strip()
+        VAGAS[aps] = (qtd, nums)
     return VAGAS
 
 def vagas_str(apto):
-    vp, vpr = ler_vagas().get(str(apto), (0, 0))
-    tot = vp + vpr
-    if tot == 0: return ""
-    if vpr > 0:
-        return f"{tot} vagas · {vpr} premium"
-    return f"{tot} vaga" + ("s" if tot != 1 else "")
+    qtd, nums = ler_vagas().get(str(apto), (0, ""))
+    if qtd == 0: return ""
+    base = f"{qtd} vaga" + ("s" if qtd != 1 else "")
+    if nums:
+        return f"{base} · nº {nums}"
+    return base
 
 # ───────────────────────── LEITURA ─────────────────────────
 def ler_painel():
