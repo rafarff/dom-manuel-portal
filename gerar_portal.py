@@ -39,7 +39,7 @@ CONFIG = {
     "vigente": "T1",            # ← tabela vigente exibida ao cliente
     "subtitulo": "Ponta D'Areia · São Luís/MA",
     "tema": "escuro",           # ← "escuro" | "contraste" | "claro_sutil" | "claro"
-    "mostrar_vendido": False,   # ← False nesta fase: permuta/vendida viram "Reservado" (omite RI)
+    "mostrar_vendido": True,    # ← True: permuta E vendidas aparecem como "Vendido" no espelho do cliente
     "regua_versao": "v3.3",     # ← rótulo de versão no cabeçalho do PDF exportado
 }
 
