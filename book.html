@@ -2932,7 +2932,7 @@
     secs.forEach(function(s){
       var lab=s.getAttribute('data-screen-label')||'';
       if(/Pavimento-tipo/.test(lab)) buildFull(s,'Pavimento-tipo');
-      else { var m=lab.match(/Final 0\d/); if(m) build(s,m[0]); }
+      // widget compacto removido dos slides Final 01-03 (23/07/2026)
     });
   }
   if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
