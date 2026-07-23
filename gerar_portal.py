@@ -499,6 +499,7 @@ table.ftbl tr{{page-break-inside:avoid}}
 
   <nav class="tabs">
     <button class="on" data-view="book">Book de Vendas</button>
+    <button data-view="plantas">Plantas</button>
     <button data-view="pesquisa">Pesquisa de Mercado</button>
     <button data-view="espelho">Espelho</button>
     <button data-view="tabela">Tabela {esc(vigente)}</button>
@@ -513,6 +514,16 @@ table.ftbl tr{{page-break-inside:avoid}}
       <a class="act ghost" href="book.html" target="_blank" rel="noopener">Abrir em nova aba</a>
     </div>
     <iframe id="bookframe" class="bookframe" src="book.html" title="Book Dom Manuel" allowfullscreen></iframe>
+  </section>
+
+  <section class="view" data-name="plantas">
+    <h2 class="vt">Plantas dos Pavimentos</h2>
+    <p class="vd">Plantas humanizadas em alta resolução · Térreo, Mezanino, Lazer e Pavimento Tipo · zoom para os detalhes.</p>
+    <div class="btnrow">
+      <button class="act" onclick="present('plantasframe')">▶ Apresentar em tela cheia</button>
+      <a class="act ghost" href="plantas.html" target="_blank" rel="noopener">Abrir em nova aba</a>
+    </div>
+    <iframe id="plantasframe" class="bookframe" src="plantas.html" title="Plantas dos Pavimentos" allowfullscreen></iframe>
   </section>
 
   <section class="view" data-name="institucional">

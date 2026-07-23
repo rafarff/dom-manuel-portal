@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dom Manuel · Plantas dos Pavimentos</title>
+<style>
+:root{--bg:#16140f;--panel:#1f1c16;--gold:#c2a15a;--golds:#d9c08a;--line:#3a342a;--txt:#ece6da;--muted:#9a9285;--paper:#E6DDD0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--txt);font:14px/1.5 "Montserrat","Helvetica Neue",Arial,sans-serif;display:flex;flex-direction:column;overflow:hidden}
+header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--bg);flex:0 0 auto}
+header .tt{letter-spacing:.14em;font-size:12px;color:var(--gold);text-transform:uppercase;white-space:nowrap}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{background:transparent;border:1px solid transparent;color:var(--muted);padding:7px 14px;border-radius:8px;font-size:13px;cursor:pointer;letter-spacing:.03em;font-family:inherit}
+nav button.on{color:var(--gold);border-color:var(--line);background:var(--panel)}
+nav button:hover{color:var(--golds)}
+#stage{flex:1 1 auto;position:relative;overflow:hidden;background:var(--paper);cursor:grab;touch-action:none}
+#stage.dragging{cursor:grabbing}
+#stage img{position:absolute;top:0;left:0;transform-origin:0 0;user-select:none;-webkit-user-drag:none;will-change:transform;image-rendering:auto}
+#hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);background:rgba(22,20,15,.82);color:#d9c08a;padding:7px 16px;border-radius:20px;font-size:12px;letter-spacing:.05em;pointer-events:none;transition:opacity .6s;white-space:nowrap}
+#loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8a7f6a;font-size:13px;letter-spacing:.1em;background:var(--paper);pointer-events:none;transition:opacity .3s}
+.ctrls{position:absolute;right:14px;bottom:14px;display:flex;gap:6px;z-index:5}
+.ctrls button{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:rgba(22,20,15,.85);color:var(--golds);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit}
+.ctrls button:hover{background:rgba(38,34,27,.95)}
+.ctrls .pct{width:auto;padding:0 10px;font-size:12px;cursor:default}
+footer{flex:0 0 auto;padding:6px 16px;border-top:1px solid var(--line);color:var(--muted);font-size:11px;letter-spacing:.05em;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:640px){header{gap:8px}nav button{padding:6px 10px;font-size:12px}}
+</style></head>
+<body>
+<header>
+  <div class="tt">Plantas dos Pavimentos</div>
+  <nav id="tabs"></nav>
+</header>
+<div id="stage">
+  <img id="img" alt="Planta do pavimento">
+  <div id="loading">CARREGANDO…</div>
+  <div id="hint">Role para dar zoom · arraste para mover · pinça no touch</div>
+  <div class="ctrls">
+    <button id="zo" title="Reduzir">−</button>
+    <button class="pct" id="pct">100%</button>
+    <button id="zi" title="Ampliar">+</button>
+    <button id="fit" title="Ajustar à tela">⤢</button>
+    <button id="fs" title="Tela cheia">⛶</button>
+  </div>
+</div>
+<footer><span>Residencial Dom Manuel · Ponta D'Areia — São Luís/MA</span><span>Imagens meramente ilustrativas · sujeitas a alteração</span></footer>
+<script>
+var PLANTAS=[
+  {id:'terreo',   label:'Térreo · Recepção & Garagem', src:'assets/planta-terreo-hd.webp'},
+  {id:'mezanino', label:'Mezanino · Garagem',          src:'assets/planta-mezanino-hd.webp'},
+  {id:'lazer',    label:'Lazer',                       src:'assets/planta-lazer-hd.webp'},
+  {id:'tipo',     label:'Pavimento Tipo',              src:'assets/planta-tipo-hd.webp'}
+];
+var stage=document.getElementById('stage'),img=document.getElementById('img'),
+    loading=document.getElementById('loading'),hint=document.getElementById('hint'),
+    pctEl=document.getElementById('pct');
+var scale=1,tx=0,ty=0,fitScale=1,natW=0,natH=0;
+var MINF=0.8,MAXF=9;
+
+function apply(){img.style.transform='translate('+tx+'px,'+ty+'px) scale('+scale+')';
+  pctEl.textContent=Math.round(scale/fitScale*100)+'%';}
+function clamp(){
+  var r=stage.getBoundingClientRect(),w=natW*scale,h=natH*scale,m=40;
+  if(w<=r.width){tx=(r.width-w)/2;}else{tx=Math.min(m,Math.max(r.width-w-m,tx));}
+  if(h<=r.height){ty=(r.height-h)/2;}else{ty=Math.min(m,Math.max(r.height-h-m,ty));}
+}
+function fit(){
+  var r=stage.getBoundingClientRect();
+  if(!natW||!r.width)return;
+  fitScale=Math.min(r.width/natW,r.height/natH)*0.96;
+  scale=fitScale;clamp();apply();
+}
+function setScale(ns,cx,cy){
+  ns=Math.min(fitScale*MAXF,Math.max(fitScale*MINF,ns));
+  var r=stage.getBoundingClientRect();
+  cx=(cx===undefined)?r.width/2:cx; cy=(cy===undefined)?r.height/2:cy;
+  var k=ns/scale;
+  tx=cx-(cx-tx)*k; ty=cy-(cy-ty)*k; scale=ns;
+  clamp();apply();
+}
+function load(p){
+  loading.style.opacity='1';loading.style.pointerEvents='auto';
+  img.removeAttribute('src');
+  var pre=new Image();
+  pre.onload=function(){
+    natW=pre.naturalWidth;natH=pre.naturalHeight;
+    img.src=p.src;img.width=natW;img.height=natH;
+    fit();loading.style.opacity='0';loading.style.pointerEvents='none';
+  };
+  pre.src=p.src;
+}
+var tabs=document.getElementById('tabs');
+PLANTAS.forEach(function(p,i){
+  var b=document.createElement('button');b.textContent=p.label;if(i===0)b.classList.add('on');
+  b.onclick=function(){tabs.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');load(p);};
+  tabs.appendChild(b);
+});
+/* wheel zoom (cursor-anchored) */
+stage.addEventListener('wheel',function(e){
+  e.preventDefault();
+  var r=stage.getBoundingClientRect();
+  var f=Math.exp(-e.deltaY*0.0018);
+  setScale(scale*f,e.clientX-r.left,e.clientY-r.top);
+},{passive:false});
+/* pointer pan + pinch */
+var pts=new Map(),start=null;
+stage.addEventListener('pointerdown',function(e){
+  if(e.target.closest('.ctrls'))return;
+  e.preventDefault();stage.setPointerCapture(e.pointerId);
+  pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===1){start={x:e.clientX,y:e.clientY,tx:tx,ty:ty};stage.classList.add('dragging');}
+  else{start=null;}
+});
+stage.addEventListener('pointermove',function(e){
+  if(!pts.has(e.pointerId))return;
+  var prev=Array.from(pts.values());
+  pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  var cur=Array.from(pts.values());
+  if(pts.size===2){
+    var d0=Math.hypot(prev[0].x-prev[1].x,prev[0].y-prev[1].y);
+    var d1=Math.hypot(cur[0].x-cur[1].x,cur[0].y-cur[1].y);
+    if(d0>0){
+      var r=stage.getBoundingClientRect();
+      var cx=(cur[0].x+cur[1].x)/2-r.left,cy=(cur[0].y+cur[1].y)/2-r.top;
+      setScale(scale*d1/d0,cx,cy);
+    }
+  }else if(pts.size===1&&start){
+    tx=start.tx+(e.clientX-start.x);ty=start.ty+(e.clientY-start.y);
+    clamp();apply();
+  }
+});
+function up(e){pts.delete(e.pointerId);
+  if(pts.size===1){var p=Array.from(pts.values())[0];start={x:p.x,y:p.y,tx:tx,ty:ty};}
+  else if(pts.size===0){start=null;stage.classList.remove('dragging');}}
+stage.addEventListener('pointerup',up);stage.addEventListener('pointercancel',up);
+/* controls */
+document.getElementById('zi').onclick=function(){setScale(scale*1.35)};
+document.getElementById('zo').onclick=function(){setScale(scale/1.35)};
+document.getElementById('fit').onclick=fit;
+document.getElementById('fs').onclick=function(){
+  var el=document.documentElement;
+  if(document.fullscreenElement){document.exitFullscreen();}
+  else if(el.requestFullscreen){el.requestFullscreen();}
+  else if(el.webkitRequestFullscreen){el.webkitRequestFullscreen();}
+};
+document.addEventListener('keydown',function(e){
+  if(e.key==='+'||e.key==='=')setScale(scale*1.35);
+  else if(e.key==='-')setScale(scale/1.35);
+  else if(e.key==='0')fit();
+});
+window.addEventListener('resize',fit);
+setTimeout(function(){hint.style.opacity='0';},5000);
+load(PLANTAS[0]);
+</script>
+</body></html>
